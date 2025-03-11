@@ -5,3 +5,4 @@
 /playwright/.cache/
 /allure-results
 /src/setup/LoginAuth.json
+.DS_Store

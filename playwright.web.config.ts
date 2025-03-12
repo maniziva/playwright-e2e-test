@@ -22,7 +22,7 @@ export default defineConfig({
     {
       name: "setup",
       testDir: "./",
-      testMatch: "global-setup.ts",
+      testMatch: "web-global-setup.ts",
     },
     {
       name: 'chromium',
@@ -30,7 +30,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         headless: !!process.env.CI,
-        storageState: "./src/setup/LoginAuth.json",
+        storageState: "./src/setup/web-loginAuth.json",
         // viewport: { width: 1440, height: 900 }
       },
     },

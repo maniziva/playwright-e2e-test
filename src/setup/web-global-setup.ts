@@ -22,5 +22,5 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByRole('heading', { name: 'Contact List' })).toBeVisible();
   await page.waitForTimeout(2000); // Adjust timing if necessary
-  await page.context().storageState({ path: "./src/setup/LoginAuth.json" });
+  await page.context().storageState({ path: "./src/setup/web-loginAuth.json" });
 });

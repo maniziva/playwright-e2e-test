@@ -4,5 +4,6 @@
 /blob-report/
 /playwright/.cache/
 /allure-results
-/src/setup/LoginAuth.json
+src/setup/web-loginAuth.json
+src/setup/api-loginAuth.json
 .DS_Store

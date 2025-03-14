@@ -37,7 +37,7 @@ test('Get Contact', async ({ }) => {
       Authorization: `Bearer ${token}`
     }
   });
-  // Check if the logout is successful
+  // Check if the response is successful
   expect(GetContactResponse.ok()).toBeTruthy();
 
   const GetContactResponseData = await GetContactResponse.json();

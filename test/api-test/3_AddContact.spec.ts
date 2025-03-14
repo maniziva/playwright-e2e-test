@@ -51,7 +51,7 @@ test('Add Contact', async ({ }) => {
     },
     data: contactPayload
   });
-  // Check if the logout is successful
+  // Check if the response is successful
   expect(AddContactResponse.ok()).toBeTruthy();
 
   const AddContactResponseData = await AddContactResponse.json();

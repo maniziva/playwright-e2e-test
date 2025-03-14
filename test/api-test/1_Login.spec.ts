@@ -3,7 +3,7 @@ const baseURL = process.env.BASEURL;
 const username = process.env.MAILID as string;
 const password = process.env.PASSWORD;
 
-test.skip('API Test - Login and Logout', async ({}) => {
+test('API Test - Login and Logout', async ({}) => {
   // Step 1: Create a new APIRequestContext
   const apiContext = await request.newContext();
 

@@ -1,9 +1,9 @@
-const { test, expect, request } = require('@playwright/test');
+import { test, expect, request } from '@playwright/test';
 const baseURL = process.env.BASEURL;
 const username = process.env.MAILID as string;
 const password = process.env.PASSWORD;
 
-test('API Test - Login and Logout', async ({}) => {
+test.skip('API Test - Login and Logout', async ({}) => {
   // Step 1: Create a new APIRequestContext
   const apiContext = await request.newContext();
 

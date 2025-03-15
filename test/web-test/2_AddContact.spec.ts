@@ -3,7 +3,6 @@ const baseURL = process.env.BASEURL;
 
 test('test', async ({ page }) => {
     await page.goto(baseURL + "contactList");
-
     await page.getByRole('heading', { name: 'Contact List' }).click();
     // Add Contact
     await page.getByRole('button', { name: 'Add a New Contact' }).click();
@@ -30,8 +29,4 @@ test('test', async ({ page }) => {
     await page.getByPlaceholder('Country').click();
     await page.getByPlaceholder('Country').fill('India');
     await page.getByRole('button', { name: 'Submit' }).click();
-    // await page.getByRole('cell', { name: 'Manikandan Adaikalam' }).click();
-    // Logout and Goto LoginPage
-    // await page.getByRole('button', { name: 'Logout' }).click();
-    // await page.getByRole('heading', { name: 'Contact List App' }).click();
 });

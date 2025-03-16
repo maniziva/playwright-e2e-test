@@ -17,7 +17,7 @@ RUN npm install
 # RUN npx playwright install-deps
 
 # Install Playwright browsers
-# RUN npx playwright install
+RUN npx playwright install
 
 # Set environment variables (if needed)
 # ENV BASEURL=<your_base_url>

@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "allure:generate": "allure generate --clean",
+    "allure:open": "allure open"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

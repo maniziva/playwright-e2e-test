@@ -37,10 +37,13 @@ jobs:
       - run:
           name: Run Playwright web tests
           command: npx playwright test -c playwright.web.config.ts  
+      - run:
+          name: Generate Allure Report
+          command: npm run allure:generate
       - store_artifacts:
-          path: test-results
+          path: allure-report
       - store_test_results:
-          path: test-results
+          path: allure-results
 
   run-api-tests:
     executor: playwright-executor
@@ -54,10 +57,13 @@ jobs:
       - run:
           name: Run Playwright API tests
           command: npx playwright test -c playwright.api.config.ts  
+      - run:
+          name: Generate Allure Report
+          command: npm run allure:generate
       - store_artifacts:
-          path: test-results
+          path: allure-report
       - store_test_results:
-          path: test-results
+          path: allure-results
 
 workflows:
   web-tests:

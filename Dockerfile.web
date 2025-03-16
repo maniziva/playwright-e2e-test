@@ -22,4 +22,4 @@ RUN npx playwright install --with-deps
 # ENV PASSWORD=<your_password>
 
 # Command to run the tests
-CMD ["npx", "playwright", "test"]
+CMD ["npx", "playwright", "test", "-c", "playwright.web.config.ts"]

@@ -3,8 +3,7 @@ version: 2.1
 executors:
   playwright-executor:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.40.0
-    resource_class: medium
+      - image: mcr.microsoft.com/playwright:v1.40.0-focal
     working_directory: ~/repo
 
 jobs:
@@ -17,9 +16,6 @@ jobs:
       - run:
           name: Install dependencies
           command: npm ci
-      - run:
-          name: Install Playwright Browsers
-          command: npx playwright install --with-deps
       - save_cache:
           key: dependencies-{{ checksum "package-lock.json" }}
           paths:

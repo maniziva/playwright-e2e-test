@@ -3,7 +3,7 @@ version: 2.1
 executors:
   node-executor:
     docker:
-      - image: cimg/node:16.10-browsers
+      - image: cimg/node:18.0-browsers
     working_directory: ~/playwright-tests
 
 jobs:

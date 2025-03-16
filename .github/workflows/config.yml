@@ -24,14 +24,8 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install
 
-    - name: Run Playwright tests
+    - name: Run Playwright web tests
       run: npx playwright test -c playwright.web.config.ts
 
-    - name: Generate Allure Report
-      run: npm run allure:generate
-
-    - name: Upload Allure Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: allure-report
-        path: allure-report
+    - name: Run Playwright API tests
+      run: npx playwright test -c playwright.api.config.ts

@@ -34,7 +34,7 @@ jobs:
           key: dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Run Playwright tests
-          command: npm run test
+          command: npx playwright test -c playwright.web.config.ts  
       - store_artifacts:
           path: test-results
       - store_test_results:

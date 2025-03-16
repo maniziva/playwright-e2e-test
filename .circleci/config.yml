@@ -25,7 +25,7 @@ jobs:
             - node_modules
             - ~/.cache/ms-playwright
 
-  run-tests:
+  run-web-tests:
     executor: playwright-executor
     steps:
       - checkout
@@ -35,21 +35,51 @@ jobs:
           name: Install Playwright Browsers
           command: npx playwright install
       - run:
-          name: Run Playwright tests
+          name: Run Playwright web tests
           command: npx playwright test -c playwright.web.config.ts  
       - store_artifacts:
           path: test-results
       - store_test_results:
           path: test-results
 
+  run-api-tests:
+    executor: playwright-executor
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Playwright Browsers
+          command: npx playwright install
+      - run:
+          name: Run Playwright API tests
+          command: npx playwright test -c playwright.api.config.ts  
+      - store_artifacts:
+          path: test-results
+      - store_test_results:
+          path: test-results
+
 workflows:
-  playwright-tests:
+  web-tests:
     jobs:
       - install-dependencies:
           filters:
             branches:
               only: circleci-project-setup
-      - run-tests:
+      - run-web-tests:
+          requires:
+            - install-dependencies
+          filters:
+            branches:
+              only: circleci-project-setup
+
+  api-tests:
+    jobs:
+      - install-dependencies:
+          filters:
+            branches:
+              only: circleci-project-setup
+      - run-api-tests:
           requires:
             - install-dependencies
           filters:

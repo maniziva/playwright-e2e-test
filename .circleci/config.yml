@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run:
           name: Run Playwright Tests
-          command: npm test
+          command: npx playwright test -c playwright.web.config.ts 
 
 workflows:
   test-workflow:
@@ -36,4 +36,4 @@ workflows:
     filters:
       branches:
         only:
-          - main
+          - circleci-project-setup

@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: npm install
+          command: npm ci
       - run:
           name: Install Playwright Browsers
           command: npx playwright install

@@ -29,7 +29,7 @@ export default defineConfig({
       dependencies: ["setup"],
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!process.env.CI,
+        headless: true,
         storageState: "./src/setup/web-loginAuth.json",
         // viewport: { width: 1440, height: 900 }
       },

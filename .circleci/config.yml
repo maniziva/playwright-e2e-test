@@ -32,6 +32,14 @@ jobs:
       - restore_cache:
           key: dependencies-{{ checksum "package-lock.json" }}
       - run:
+          name: Install Java
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y openjdk-11-jdk
+            echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> $BASH_ENV
+            echo 'export PATH=$JAVA_HOME/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
+      - run:
           name: Install Playwright Browsers
           command: npx playwright install
       - run:
@@ -51,6 +59,14 @@ jobs:
       - checkout
       - restore_cache:
           key: dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Java
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y openjdk-11-jdk
+            echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> $BASH_ENV
+            echo 'export PATH=$JAVA_HOME/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
       - run:
           name: Install Playwright Browsers
           command: npx playwright install

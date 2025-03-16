@@ -17,6 +17,9 @@ jobs:
       - run:
           name: Install Playwright Browsers
           command: npx playwright install
+      - run:
+          name: List Installed Packages
+          command: npm list
 
   run-playwright-tests:
     executor: node-executor

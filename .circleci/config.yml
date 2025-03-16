@@ -29,11 +29,15 @@ jobs:
 workflows:
   test-workflow:
     jobs:
-      - install-dependencies
+      - install-dependencies:
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
       - run-playwright-tests:
           requires:
             - install-dependencies
-    filters:
-      branches:
-        only:
-          - circleci-project-setup
+          filters:
+            branches:
+              only:
+                - circleci-project-setup

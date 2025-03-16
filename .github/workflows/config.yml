@@ -31,7 +31,7 @@ jobs:
       run: npm run allure:generate
 
     - name: Upload Allure Report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: allure-report
         path: allure-report

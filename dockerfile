@@ -11,10 +11,10 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the application code to the working directory
-# COPY . .
+COPY . .
 
 # Install Playwright dependencies
-# RUN npx playwright install-deps
+RUN npx playwright install-deps
 
 # Install Playwright browsers
 RUN npx playwright install

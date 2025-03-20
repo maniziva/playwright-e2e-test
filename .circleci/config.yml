@@ -87,23 +87,23 @@ workflows:
       - install-dependencies:
           filters:
             branches:
-              only: circleci-project-setup
+              only: main
       - run-web-tests:
           requires:
             - install-dependencies
           filters:
             branches:
-              only: circleci-project-setup
+              only: main
 
   api-tests:
     jobs:
       - install-dependencies:
           filters:
             branches:
-              only: circleci-project-setup
+              only: main
       - run-api-tests:
           requires:
             - install-dependencies
           filters:
             branches:
-              only: circleci-project-setup
+              only: main

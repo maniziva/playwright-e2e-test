@@ -23,6 +23,7 @@ export default defineConfig({
       name: 'api-tests',
       use: {
         baseURL: process.env.API_BASEURL,
+        headless: false,
       },
     },
   ],

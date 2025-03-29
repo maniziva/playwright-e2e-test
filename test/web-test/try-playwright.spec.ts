@@ -1,5 +1,13 @@
+//WebElemet - https://try.playwright.tech/?l=playwright-test&s=ogj2nnc
+
 import { test, expect } from '@playwright/test';
 const baseURL = "https://testautomationpractice.blogspot.com/";
+
+test.describe('Playwright - WebElements', () => {
+test('Get title', async ({ page }) => {
+  await page.goto(baseURL);
+  console.log(await page.title());
+});
 
 test('has title', async ({ page }) => {
   await page.goto(baseURL);
@@ -28,10 +36,21 @@ test('RadioButton - Assertion', async ({ page }) => {
   await expect(female).not.toBeChecked();
 });
 
-test.only('InputBox - Assertion', async ({ page }) => {
+test('InputBox - Assertion', async ({ page }) => {
   await page.goto(baseURL);
-  const name = page.locator('input[id="name"]');
-  await name.fill('Manikandan');
-  await expect(name).toHaveText('Manikandan');
+  const name = page.locator('input[id="field1"]');
+  await expect(name).toHaveValue('Hello World!');
+});
+
+test('Select Dropdown', async ({ page }) => {
+  await page.goto(baseURL);
+  await page.selectOption('//*[@id="country"]',{value:'canada'});
+});
+
+
+
+
+
 
 });
+

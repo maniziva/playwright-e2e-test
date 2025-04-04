@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug NPM Script",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": [
+          "run-script",
+          "playwright-e2e-tests"  // Replace with your npm script name
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
+      }
+    ]
+  }

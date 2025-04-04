@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test -c playwright.api.config.ts",
+    "test": "npx playwright test",
     "allure:generate": "allure generate --clean",
     "allure:open": "allure open"
   },

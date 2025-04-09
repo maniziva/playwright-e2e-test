@@ -71,6 +71,47 @@ test('frame', async ({ page }) => {
 
 });
 
+test('SimpleAlert', async ({ page }) => {
+  await page.goto(baseURL);
+
+  page.on('dialog', async (dialog) => {
+    console.log('Alert message:', dialog.message());
+    await dialog.accept();
+  });
+  await page.locator('#alertBtn').click();
+});
+
+test('ConfirmAlert', async ({ page }) => {
+  await page.goto(baseURL);
+
+  // Register dialog listener BEFORE triggering the alert
+  page.on('dialog', async (dialog) => {
+    console.log('Confirm message:', dialog.message());
+    await dialog.dismiss();
+  });
+
+  // Trigger the alert
+  await page.locator('#confirmBtn').click();
+
+  // Validate the result text
+  await expect(page.locator('#demo')).toHaveText('You pressed Cancel!');
+});
+
+test.only('PromptAlert', async ({ page }) => {
+  await page.goto(baseURL);
+  const prompt = "Playwright Rocks!"
+  // Register dialog listener BEFORE triggering the alert
+  page.on('dialog', async (dialog) => {
+    await dialog.accept(prompt);
+  });
+
+  await page.locator('#promptBtn').click();
+  // Validate the result text 
+  await expect(page.locator('#demo')).toContainText(prompt);
+  
+});
+
+  
 
 });
 

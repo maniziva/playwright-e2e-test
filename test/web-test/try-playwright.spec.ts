@@ -42,14 +42,34 @@ test('InputBox - Assertion', async ({ page }) => {
   await expect(name).toHaveValue('Hello World!');
 });
 
+test('getAllValuesFromDropdown', async ({ page }) => {
+  await page.goto(baseURL);
+  const options = await page.locator('//*[@id="country"]').evaluateAll
+  (elements =>
+    elements.map(option => option.textContent?.trim())
+  ); 
+  console.log('Available countries:', options);
+});
+
 test('Select Dropdown', async ({ page }) => {
   await page.goto(baseURL);
   await page.selectOption('//*[@id="country"]',{value:'canada'});
 });
 
+test('scrollIntoView', async ({ page }) => {
+  await page.goto(baseURL);
+  const element = page.locator('#datepicker');
+  await element.scrollIntoViewIfNeeded();
+  await expect(element).toBeVisible();
+});
 
+test('frame', async ({ page }) => {
+  await page.goto("https://demo.automationtesting.in/Frames.html");
+  const frames = page.frames();
+  frames.forEach(f => console.log(f.name()));
+  await page.frameLocator('iframe[name="SingleFrame"]').locator('input').fill('Hello World!');
 
-
+});
 
 
 });

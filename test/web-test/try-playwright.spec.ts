@@ -111,19 +111,25 @@ test('PromptAlert', async ({ page }) => {
   
 });
 
-test.only('windowHandle', async ({ page }) => {
+test('windowHandle', async ({ page }) => {
   await page.goto(baseURL);
   await page.locator("button[onclick='myFunction()']").click();
   await page.waitForTimeout(2000);
   await page.bringToFront(); // Brings child window to focus
   await expect(page).toHaveTitle('Automation Testing Practice');
-  // await page.waitForTimeout(2000);
-  // await page.bringToFront(); // Brings child window to focus
-  // await expect(page).toHaveTitle('Just a moment...');
 });
 
 
+test('upload a file and screenshot', async ({ page }) => {
+  await page.goto(baseURL);
 
+  // Locate the file input
+  const fileInput = await page.locator('#singleFileInput');
 
+  // Upload a file
+  await fileInput.setInputFiles('./src/data/ContactData.csv');
+  // Validate the file name
+  await page.screenshot({ path: './src/data/screenshot.png', fullPage: true });
+});
 });
 

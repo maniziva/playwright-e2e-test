@@ -97,7 +97,7 @@ test('ConfirmAlert', async ({ page }) => {
   await expect(page.locator('#demo')).toHaveText('You pressed Cancel!');
 });
 
-test.only('PromptAlert', async ({ page }) => {
+test('PromptAlert', async ({ page }) => {
   await page.goto(baseURL);
   const prompt = "Playwright Rocks!"
   // Register dialog listener BEFORE triggering the alert
@@ -111,7 +111,19 @@ test.only('PromptAlert', async ({ page }) => {
   
 });
 
-  
+test.only('windowHandle', async ({ page }) => {
+  await page.goto(baseURL);
+  await page.locator("button[onclick='myFunction()']").click();
+  await page.waitForTimeout(2000);
+  await page.bringToFront(); // Brings child window to focus
+  await expect(page).toHaveTitle('Automation Testing Practice');
+  // await page.waitForTimeout(2000);
+  // await page.bringToFront(); // Brings child window to focus
+  // await expect(page).toHaveTitle('Just a moment...');
+});
+
+
+
 
 });
 

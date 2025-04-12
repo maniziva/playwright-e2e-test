@@ -1,6 +1,8 @@
 //WebElemet - https://try.playwright.tech/?l=playwright-test&s=ogj2nnc
 
 import { test, expect } from '@playwright/test';
+import fs from 'fs';
+
 const baseURL = "https://testautomationpractice.blogspot.com/";
 
 test.describe('Playwright - WebElements', () => {
@@ -133,3 +135,17 @@ test('upload a file and screenshot', async ({ page }) => {
 });
 });
 
+
+test.only('verify downloaded file', async ({ page }) => {
+  await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html'); // Example URL
+  await page.getByLabel('Enter Text:').click();
+  await page.getByLabel('Enter Text:').fill('check');
+  await page.getByRole('button', { name: 'Generate and Download Text' }).click();
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Download Text File' }).click();
+  const download = await downloadPromise;
+  await page.getByRole('button', { name: 'Generate and Download PDF File' }).click();
+  const download1Promise = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Download PDF File' }).click();
+  const download1 = await download1Promise;
+});

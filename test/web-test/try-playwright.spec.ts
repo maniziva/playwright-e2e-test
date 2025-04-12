@@ -2,6 +2,7 @@
 
 import { test, expect } from '@playwright/test';
 import fs from 'fs';
+import path from 'path';
 
 const baseURL = "https://testautomationpractice.blogspot.com/";
 
@@ -135,17 +136,20 @@ test('upload a file and screenshot', async ({ page }) => {
 });
 });
 
-
-test.only('verify downloaded file', async ({ page }) => {
+test.only('verify downloaded text file', async ({ page }) => {
   await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html'); // Example URL
-  await page.getByLabel('Enter Text:').click();
-  await page.getByLabel('Enter Text:').fill('check');
-  await page.getByRole('button', { name: 'Generate and Download Text' }).click();
-  const downloadPromise = page.waitForEvent('download');
-  await page.getByRole('link', { name: 'Download Text File' }).click();
-  const download = await downloadPromise;
-  await page.getByRole('button', { name: 'Generate and Download PDF File' }).click();
-  const download1Promise = page.waitForEvent('download');
-  await page.getByRole('link', { name: 'Download PDF File' }).click();
-  const download1 = await download1Promise;
+    // Fill text and trigger text file download
+    await page.getByLabel('Enter Text:').fill('check');
+    await page.getByRole('button', { name: 'Generate and Download Text' }).click();
+  
+    const textDownloadPromise = page.waitForEvent('download');
+    await page.getByRole('link', { name: 'Download Text File' }).click();
+    const textDownload = await textDownloadPromise;
+
+  // Save the file to the downloads path
+  const downloadsPath = path.join(__dirname, '../../src/download');
+  const textPath = path.join(downloadsPath, textDownload.suggestedFilename());
+  await textDownload.saveAs(textPath);
+  console.log('Text file saved to:', textPath);
+  expect(fs.existsSync(textPath)).toBeTruthy();
 });

@@ -136,7 +136,7 @@ test('upload a file and screenshot', async ({ page }) => {
 });
 });
 
-test.only('verify downloaded text file', async ({ page }) => {
+test('verify downloaded text file', async ({ page }) => {
   await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html'); // Example URL
     // Fill text and trigger text file download
     await page.getByLabel('Enter Text:').fill('check');
@@ -152,4 +152,12 @@ test.only('verify downloaded text file', async ({ page }) => {
   await textDownload.saveAs(textPath);
   console.log('Text file saved to:', textPath);
   expect(fs.existsSync(textPath)).toBeTruthy();
+});
+
+test.only('waitforselector', async ({ page }) => {
+  await page.goto(baseURL);
+  await page.locator('#datepicker').waitFor({ state: 'visible' });
+  await page.locator('#datepicker').fill('2023-10-01');
+  await page.locator('#datepicker').press('Enter');
+  await page.waitForTimeout(2000);
 });

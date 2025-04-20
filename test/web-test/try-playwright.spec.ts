@@ -154,10 +154,26 @@ test('verify downloaded text file', async ({ page }) => {
   expect(fs.existsSync(textPath)).toBeTruthy();
 });
 
-test.only('waitforselector', async ({ page }) => {
+test('waitforselector', async ({ page }) => {
   await page.goto(baseURL);
   await page.locator('#datepicker').waitFor({ state: 'visible' });
   await page.locator('#datepicker').fill('2023-10-01');
   await page.locator('#datepicker').press('Enter');
   await page.waitForTimeout(2000);
+});
+
+test.only('Check page title and content - Assertion', async ({ page }) => {
+  await page.goto('https://example.com');
+
+  // Assert page title
+  await expect(page).toHaveTitle(/Example Domain/);
+
+  // Assert a heading contains specific text
+  await expect(page.locator('h1')).toHaveText('Example Domain');
+
+  // Assert element is visible
+  await expect(page.locator('h1')).toBeVisible();
+
+  // Assert URL
+  await expect(page).toHaveURL('https://example.com/');
 });

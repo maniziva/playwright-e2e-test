@@ -26,10 +26,10 @@ export default defineConfig({
     },
     {
       name: 'chromium',
-      //dependencies: ["setup"],
+      dependencies: ["setup"],
       use: {
         ...devices['Desktop Chrome'],
-        headless: false,
+        headless: true,
         storageState: "./src/setup/web-loginAuth.json",
         // viewport: { width: 1440, height: 900 }
       },

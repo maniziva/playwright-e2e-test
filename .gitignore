@@ -7,3 +7,4 @@
 src/setup/web-loginAuth.json
 src/setup/api-loginAuth.json
 .DS_Store
+src/download/info.txt

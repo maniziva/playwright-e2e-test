@@ -14,9 +14,9 @@ export default defineConfig({
   workers: process.env.CI ? 2 : 1,
   reporter: [['html'], ['allure-playwright'], ['junit', { outputFile: 'test-results/junit-report.xml' }]],
   use: {
-    trace: "retain-on-failure",
-    video: "retain-on-failure",
-    screenshot: "only-on-failure",
+    trace: "retain-on-failure", //"on", "off", "retain-on-failure",
+    video: "retain-on-failure", //"on", "off", "retain-on-failure",
+    screenshot: "only-on-failure", //"on", "off", "only-on-failure",
   },
   projects: [
     {

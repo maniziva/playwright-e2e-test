@@ -1,6 +1,9 @@
 //WebElemet - https://try.playwright.tech/?l=playwright-test&s=ogj2nnc
 
 import { test, expect } from '@playwright/test';
+import fs from 'fs';
+import path from 'path';
+
 const baseURL = "https://testautomationpractice.blogspot.com/";
 
 test.describe('Playwright - WebElements', () => {
@@ -133,3 +136,44 @@ test('upload a file and screenshot', async ({ page }) => {
 });
 });
 
+test('verify downloaded text file', async ({ page }) => {
+  await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html'); // Example URL
+    // Fill text and trigger text file download
+    await page.getByLabel('Enter Text:').fill('check');
+    await page.getByRole('button', { name: 'Generate and Download Text' }).click();
+  
+    const textDownloadPromise = page.waitForEvent('download');
+    await page.getByRole('link', { name: 'Download Text File' }).click();
+    const textDownload = await textDownloadPromise;
+
+  // Save the file to the downloads path
+  const downloadsPath = path.join(__dirname, '../../src/download');
+  const textPath = path.join(downloadsPath, textDownload.suggestedFilename());
+  await textDownload.saveAs(textPath);
+  console.log('Text file saved to:', textPath);
+  expect(fs.existsSync(textPath)).toBeTruthy();
+});
+
+test('waitforselector', async ({ page }) => {
+  await page.goto(baseURL);
+  await page.locator('#datepicker').waitFor({ state: 'visible' });
+  await page.locator('#datepicker').fill('2023-10-01');
+  await page.locator('#datepicker').press('Enter');
+  await page.waitForTimeout(2000);
+});
+
+test.only('Check page title and content - Assertion', async ({ page }) => {
+  await page.goto('https://example.com');
+
+  // Assert page title
+  await expect(page).toHaveTitle(/Example Domain/);
+
+  // Assert a heading contains specific text
+  await expect(page.locator('h1')).toHaveText('Example Domain');
+
+  // Assert element is visible
+  await expect(page.locator('h1')).toBeVisible();
+
+  // Assert URL
+  await expect(page).toHaveURL('https://example.com/');
+});

@@ -1,8 +1,7 @@
 import { expect, test } from "@playwright/test";
-import { PassThrough } from "stream";
 const baseURL = "https://testautomationpractice.blogspot.com/";
 
-test.describe.parallel("Practice - Day1", async () => {
+test.describe.parallel("Practice - Web", async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(baseURL);
   });

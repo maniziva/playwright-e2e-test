@@ -185,7 +185,7 @@ test.describe.parallel("Practice - Web", async () => {
     const suggestedFileName = download.suggestedFilename();
     expect(suggestedFileName).toBe("info.txt");
   });
-  test.only('Navigate based on tab title', async ({ context, page }) => {
+  test('Navigate based on tab title', async ({ context, page }) => {
     await page.goto('https://testautomationpractice.blogspot.com/');
   
     // Open multiple tabs (simulated here)
@@ -194,6 +194,18 @@ test.describe.parallel("Practice - Web", async () => {
   
     const tab2 = await context.newPage();
     await tab2.goto('https://testautomationpractice.blogspot.com/p/gui-elements-ajax-hidden.html');
+
+    const tab3 = await context.newPage();
+    await tab3.goto('https://www.programiz.com/typescript/online-compiler/');
+
+    const tab4 = await context.newPage();
+    await tab4.goto('https://github.com/maniziva/playwright-e2e-test');
+
+    const tab5 = await context.newPage();
+    await tab5.goto('https://github.com/maniziva/playwright-cucumber');
+
+    const tab6 = await context.newPage();
+    await tab6.goto('https://github.com/maniziva/');
   
     // Get all open tabs
     const tabs = context.pages();

@@ -185,4 +185,48 @@ test.describe.parallel("Practice - Web", async () => {
     const suggestedFileName = download.suggestedFilename();
     expect(suggestedFileName).toBe("info.txt");
   });
+  test('Navigate based on tab title', async ({ context, page }) => {
+    await page.goto('https://testautomationpractice.blogspot.com/');
+  
+    // Open multiple tabs (simulated here)
+    const tab1 = await context.newPage();
+    await tab1.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html');
+  
+    const tab2 = await context.newPage();
+    await tab2.goto('https://testautomationpractice.blogspot.com/p/gui-elements-ajax-hidden.html');
+  
+    // Get all open tabs
+    const tabs = context.pages();
+  
+    for (const tab of tabs) {
+      const title = await tab.title();
+      console.log(`Tab title: ${title}`);
+  
+      if (title.includes('Download Files')) {
+        await tab.bringToFront(); // Focus this tab
+        // Perform Download-specific action
+        await tab1.locator('//textarea[@id="inputText"]').fill("Info");
+        await tab1.locator('//button[@id="generateTxt"]').click();
+        // 1. Start waiting for the download
+        const [download] = await Promise.all([
+          tab1.waitForEvent("download"), // Waits for the download
+          await tab1.locator('//a[@id="txtDownloadLink"]').click(),
+        ]);
+  
+        // 2. Get download suggested filename
+        const suggestedFileName = download.suggestedFilename();
+        expect(suggestedFileName).toBe("info.txt");
+  
+        await tab1.close();
+      }
+    
+      if (title.includes('Hidden Elements')) {
+        await tab.bringToFront();
+        // Perform report-related assertions or downloads
+        console.log('Navigates to hidden page');
+        await tab2.screenshot({path: "./src/download/pageNavi.png",})
+        await tab2.close();
+      }
+    }
+  });
 });

@@ -185,7 +185,7 @@ test.describe.parallel("Practice - Web", async () => {
     const suggestedFileName = download.suggestedFilename();
     expect(suggestedFileName).toBe("info.txt");
   });
-  test('Navigate based on tab title', async ({ context, page }) => {
+  test.only('Navigate based on tab title', async ({ context, page }) => {
     await page.goto('https://testautomationpractice.blogspot.com/');
   
     // Open multiple tabs (simulated here)
@@ -205,27 +205,27 @@ test.describe.parallel("Practice - Web", async () => {
       if (title.includes('Download Files')) {
         await tab.bringToFront(); // Focus this tab
         // Perform Download-specific action
-        await tab1.locator('//textarea[@id="inputText"]').fill("Info");
-        await tab1.locator('//button[@id="generateTxt"]').click();
+        await tab.locator('//textarea[@id="inputText"]').fill("Info");
+        await tab.locator('//button[@id="generateTxt"]').click();
         // 1. Start waiting for the download
         const [download] = await Promise.all([
-          tab1.waitForEvent("download"), // Waits for the download
-          await tab1.locator('//a[@id="txtDownloadLink"]').click(),
+          tab.waitForEvent("download"), // Waits for the download
+          await tab.locator('//a[@id="txtDownloadLink"]').click(),
         ]);
   
         // 2. Get download suggested filename
         const suggestedFileName = download.suggestedFilename();
         expect(suggestedFileName).toBe("info.txt");
   
-        await tab1.close();
+        await tab.close();
       }
     
       if (title.includes('Hidden Elements')) {
         await tab.bringToFront();
         // Perform report-related assertions or downloads
         console.log('Navigates to hidden page');
-        await tab2.screenshot({path: "./src/download/pageNavi.png",})
-        await tab2.close();
+        await tab.screenshot({path: "./src/download/pageNavi.png",})
+        await tab.close();
       }
     }
   });

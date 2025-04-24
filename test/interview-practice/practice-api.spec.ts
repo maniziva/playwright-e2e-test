@@ -23,7 +23,7 @@ test.describe.parallel("API Practice", async () => {
   });
 
   test("Get contact", async ({ request }) => {
-    const getResponse = await request.get("/users/me", {
+    const getResponse = await request.get("users/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

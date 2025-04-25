@@ -272,4 +272,7 @@ test.describe.parallel("Practice - Web", async () => {
   const threshold = 500; // Set your performance limit
   expect(ttfb).toBeLessThan(threshold);
   });
+  test('empty check', async({page})=>{
+    
+  })
 });

@@ -194,6 +194,18 @@ test.describe.parallel("Practice - Web", async () => {
   
     const tab2 = await context.newPage();
     await tab2.goto('https://testautomationpractice.blogspot.com/p/gui-elements-ajax-hidden.html');
+
+    const tab3 = await context.newPage();
+    await tab3.goto('https://www.programiz.com/typescript/online-compiler/');
+
+    const tab4 = await context.newPage();
+    await tab4.goto('https://github.com/maniziva/playwright-e2e-test');
+
+    const tab5 = await context.newPage();
+    await tab5.goto('https://github.com/maniziva/playwright-cucumber');
+
+    const tab6 = await context.newPage();
+    await tab6.goto('https://github.com/maniziva/');
   
     // Get all open tabs
     const tabs = context.pages();
@@ -205,28 +217,41 @@ test.describe.parallel("Practice - Web", async () => {
       if (title.includes('Download Files')) {
         await tab.bringToFront(); // Focus this tab
         // Perform Download-specific action
-        await tab1.locator('//textarea[@id="inputText"]').fill("Info");
-        await tab1.locator('//button[@id="generateTxt"]').click();
+        await tab.locator('//textarea[@id="inputText"]').fill("Info");
+        await tab.locator('//button[@id="generateTxt"]').click();
         // 1. Start waiting for the download
         const [download] = await Promise.all([
-          tab1.waitForEvent("download"), // Waits for the download
-          await tab1.locator('//a[@id="txtDownloadLink"]').click(),
+          tab.waitForEvent("download"), // Waits for the download
+          await tab.locator('//a[@id="txtDownloadLink"]').click(),
         ]);
   
         // 2. Get download suggested filename
         const suggestedFileName = download.suggestedFilename();
         expect(suggestedFileName).toBe("info.txt");
   
-        await tab1.close();
+        await tab.close();
       }
     
       if (title.includes('Hidden Elements')) {
         await tab.bringToFront();
         // Perform report-related assertions or downloads
         console.log('Navigates to hidden page');
-        await tab2.screenshot({path: "./src/download/pageNavi.png",})
-        await tab2.close();
+        await tab.screenshot({path: "./src/download/pageNavi.png",})
+        await tab.close();
       }
     }
+  });
+  test("frames", async ({ page }) => {
+    await page.goto("https://demo.automationtesting.in/Frames.html");
+  
+      const singleFrame = page.frame({ name: "SingleFrame" });
+  
+      if (!singleFrame) {
+        throw new Error("SingleFrame not found");
+      }
+  
+      await singleFrame.locator("input").fill("Hello from try-catch!");
+      console.log("Input filled successfully inside the frame.");
+    
   });
 });

@@ -5,6 +5,7 @@
       "allowSyntheticDefaultImports": true,
       "paths": {
         "@pages/*": ["src/pages/*"],
+        "@fixtures/*": ["src/fixtures/*"]
       }
     }
   }

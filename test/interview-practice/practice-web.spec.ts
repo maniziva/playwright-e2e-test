@@ -254,4 +254,22 @@ test.describe.parallel("Practice - Web", async () => {
       console.log("Input filled successfully inside the frame.");
     
   });
+  test('Visual testing', async({page}) =>{
+    await page.goto("https://thinking-tester-contact-list.herokuapp.com/");
+    await expect(page).toHaveScreenshot(".src/snapshots/loginpage-full.png", {fullPage: true, threshold: 0.1});
+  })
+  test('[@performance] Measure navigation timings', async ({ page }) => {
+    await page.goto('https://example.com');
+  
+    const performanceTiming = await page.evaluate(() => JSON.parse(JSON.stringify(window.performance.timing)));
+  
+    const ttfb = performanceTiming.responseStart - performanceTiming.requestStart;
+    const pageLoad = performanceTiming.loadEventEnd - performanceTiming.navigationStart;
+  
+    console.log(`Time to First Byte (TTFB): ${ttfb} ms`);
+    console.log(`Full Page Load Time: ${pageLoad} ms`);
+
+  const threshold = 500; // Set your performance limit
+  expect(ttfb).toBeLessThan(threshold);
+  });
 });

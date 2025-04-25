@@ -241,4 +241,17 @@ test.describe.parallel("Practice - Web", async () => {
       }
     }
   });
+  test("frames", async ({ page }) => {
+    await page.goto("https://demo.automationtesting.in/Frames.html");
+  
+      const singleFrame = page.frame({ name: "SingleFrame" });
+  
+      if (!singleFrame) {
+        throw new Error("SingleFrame not found");
+      }
+  
+      await singleFrame.locator("input").fill("Hello from try-catch!");
+      console.log("Input filled successfully inside the frame.");
+    
+  });
 });

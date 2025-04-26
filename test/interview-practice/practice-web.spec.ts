@@ -275,4 +275,49 @@ test.describe.parallel("Practice - Web", async () => {
   test('empty check', async({page})=>{
     
   })
+  test('mock detail page API response after real login', async ({ page }) => {
+
+    // 1. Setup interception BEFORE navigation
+    await page.route('**/contacts', async (route) => { // endpoint should be 'contacts' not 'contactList'
+      const mockResponse = [
+        {
+          "_id": "68027018e86fb700159aa6bc",
+          "firstName": "Mock",
+          "lastName": "Doe",
+          "birthdate": "1970-01-01",
+          "email": "jdoe@fake.com",
+          "phone": "8005555555",
+          "street1": "1 Main St.",
+          "street2": "Apartment A",
+          "city": "Anytown",
+          "stateProvince": "KS",
+          "postalCode": "12345",
+          "country": "USA",
+          "owner": "68025c5ce86fb700159aa665",
+          "__v": 0
+        }
+      ];
+  
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(mockResponse),
+      });
+    });
+  
+    // 2. Go to login page
+    await page.goto('https://thinking-tester-contact-list.herokuapp.com/login');
+  
+    // 3. Perform real login
+    await page.locator('input[id="email"]').fill('master@gmail.com');
+    await page.locator('input[id="password"]').fill('Info@1234');
+    await page.locator('button[id="submit"]').click();
+  
+    // 4. Wait for contact list page
+    await page.waitForURL('**/contactList');
+  
+    // 5. Assert mocked contact is shown
+    await expect(page.locator('text=Mock')).toBeVisible();
+    await expect(page.locator('text=jdoe@fake.com')).toBeVisible();
+  });
 });

@@ -50,7 +50,7 @@ test.describe("Playwright - WebElements", () => {
     await page.selectOption('//*[@id="country"]', { value: "canada" });
   });
 
-  test.only("getAllValuesFromDropdown and select 1st value", async ({
+  test("getAllValuesFromDropdown and select 1st value", async ({
     page,
   }) => {
     await page.goto(baseURL);

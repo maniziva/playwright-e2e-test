@@ -1,4 +1,7 @@
-import { expect, test } from "@playwright/test";
+//import { expect, test } from "@playwright/test";
+import { test } from "@fixtures/test-helpers-fixtures";
+import { expect } from "@playwright/test";
+
 const baseURL = "https://testautomationpractice.blogspot.com/";
 
 test.describe.parallel("Practice - Web", async () => {
@@ -185,36 +188,40 @@ test.describe.parallel("Practice - Web", async () => {
     const suggestedFileName = download.suggestedFilename();
     expect(suggestedFileName).toBe("info.txt");
   });
-  test('Navigate based on tab title', async ({ context, page }) => {
-    await page.goto('https://testautomationpractice.blogspot.com/');
-  
+  test("Navigate based on tab title", async ({ context, page }) => {
+    await page.goto("https://testautomationpractice.blogspot.com/");
+
     // Open multiple tabs (simulated here)
     const tab1 = await context.newPage();
-    await tab1.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html');
-  
+    await tab1.goto(
+      "https://testautomationpractice.blogspot.com/p/download-files_25.html"
+    );
+
     const tab2 = await context.newPage();
-    await tab2.goto('https://testautomationpractice.blogspot.com/p/gui-elements-ajax-hidden.html');
+    await tab2.goto(
+      "https://testautomationpractice.blogspot.com/p/gui-elements-ajax-hidden.html"
+    );
 
     const tab3 = await context.newPage();
-    await tab3.goto('https://www.programiz.com/typescript/online-compiler/');
+    await tab3.goto("https://www.programiz.com/typescript/online-compiler/");
 
     const tab4 = await context.newPage();
-    await tab4.goto('https://github.com/maniziva/playwright-e2e-test');
+    await tab4.goto("https://github.com/maniziva/playwright-e2e-test");
 
     const tab5 = await context.newPage();
-    await tab5.goto('https://github.com/maniziva/playwright-cucumber');
+    await tab5.goto("https://github.com/maniziva/playwright-cucumber");
 
     const tab6 = await context.newPage();
-    await tab6.goto('https://github.com/maniziva/');
-  
+    await tab6.goto("https://github.com/maniziva/");
+
     // Get all open tabs
     const tabs = context.pages();
-  
+
     for (const tab of tabs) {
       const title = await tab.title();
       console.log(`Tab title: ${title}`);
-  
-      if (title.includes('Download Files')) {
+
+      if (title.includes("Download Files")) {
         await tab.bringToFront(); // Focus this tab
         // Perform Download-specific action
         await tab.locator('//textarea[@id="inputText"]').fill("Info");
@@ -224,52 +231,115 @@ test.describe.parallel("Practice - Web", async () => {
           tab.waitForEvent("download"), // Waits for the download
           await tab.locator('//a[@id="txtDownloadLink"]').click(),
         ]);
-  
+
         // 2. Get download suggested filename
         const suggestedFileName = download.suggestedFilename();
         expect(suggestedFileName).toBe("info.txt");
-  
+
         await tab.close();
       }
-    
-      if (title.includes('Hidden Elements')) {
+
+      if (title.includes("Hidden Elements")) {
         await tab.bringToFront();
         // Perform report-related assertions or downloads
-        console.log('Navigates to hidden page');
-        await tab.screenshot({path: "./src/download/pageNavi.png",})
+        console.log("Navigates to hidden page");
+        await tab.screenshot({ path: "./src/download/pageNavi.png" });
         await tab.close();
       }
     }
   });
   test("frames", async ({ page }) => {
     await page.goto("https://demo.automationtesting.in/Frames.html");
-  
-      const singleFrame = page.frame({ name: "SingleFrame" });
-  
-      if (!singleFrame) {
-        throw new Error("SingleFrame not found");
-      }
-  
-      await singleFrame.locator("input").fill("Hello from try-catch!");
-      console.log("Input filled successfully inside the frame.");
-    
+
+    const singleFrame = page.frame({ name: "SingleFrame" });
+
+    if (!singleFrame) {
+      throw new Error("SingleFrame not found");
+    }
+
+    await singleFrame.locator("input").fill("Hello from try-catch!");
+    console.log("Input filled successfully inside the frame.");
   });
-  test('Visual testing', async({page}) =>{
+  test("Visual testing", async ({ page }) => {
     await page.goto("https://thinking-tester-contact-list.herokuapp.com/");
-    await expect(page).toHaveScreenshot(".src/snapshots/loginpage-full.png", {fullPage: true, threshold: 0.1});
-  })
-  test('[@performance] Measure navigation timings', async ({ page }) => {
-    await page.goto('https://example.com');
-  
-    const performanceTiming = await page.evaluate(() => JSON.parse(JSON.stringify(window.performance.timing)));
-  
-    const ttfb = performanceTiming.responseStart - performanceTiming.requestStart;
-    const pageLoad = performanceTiming.loadEventEnd - performanceTiming.navigationStart;
-  
+    await expect(page).toHaveScreenshot(".src/snapshots/loginpage-full.png", {
+      fullPage: true,
+      threshold: 0.1,
+    });
+  });
+  test("[@performance] Measure navigation timings", async ({ page }) => {
+      await page.goto("https://example.com");
+
+    const performanceTiming = await page.evaluate(() =>
+      JSON.parse(JSON.stringify(window.performance.timing))
+    );
+
+    const ttfb =
+      performanceTiming.responseStart - performanceTiming.requestStart;
+    const pageLoad =
+      performanceTiming.loadEventEnd - performanceTiming.navigationStart;
+
     console.log(`Time to First Byte (TTFB): ${ttfb} ms`);
     console.log(`Full Page Load Time: ${pageLoad} ms`);
 
-  const threshold = 500; // Set your performance limit
-  expect(ttfb).toBeLessThan(threshold);
+    const threshold = 500; // Set your performance limit
+    expect(ttfb).toBeLessThan(threshold);
+  });
+  test("mock detail page API response after real login", async ({ page }) => {
+    // 1. Setup interception BEFORE navigation
+    await page.route("**/contacts", async (route) => {
+      // endpoint should be 'contacts' not 'contactList'
+      const mockResponse = [
+        {
+          _id: "68027018e86fb700159aa6bc",
+          firstName: "Mock",
+          lastName: "Doe",
+          birthdate: "1970-01-01",
+          email: "jdoe@fake.com",
+          phone: "8005555555",
+          street1: "1 Main St.",
+          street2: "Apartment A",
+          city: "Anytown",
+          stateProvince: "KS",
+          postalCode: "12345",
+          country: "USA",
+          owner: "68025c5ce86fb700159aa665",
+          __v: 0,
+        },
+      ];
+
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(mockResponse),
+      });
+    });
+
+    // 2. Go to login page
+    await page.goto("https://thinking-tester-contact-list.herokuapp.com/login");
+
+    // 3. Perform real login
+    await page.locator('input[id="email"]').fill("master@gmail.com");
+    await page.locator('input[id="password"]').fill("Info@1234");
+    await page.locator('button[id="submit"]').click();
+
+    // 4. Wait for contact list page
+    await page.waitForURL("**/contactList");
+
+    // 5. Assert mocked contact is shown
+    await expect(page.locator("text=Mock")).toBeVisible();
+    await expect(page.locator("text=jdoe@fake.com")).toBeVisible();
+  });
+  test("Test with multiple helpers", async ({
+    page,
+    timestamp,
+    randomEmail,
+    randomUsername,
+    randomUUID,
+  }) => {
+    console.log("Timestamp:", timestamp);
+    console.log("Random Email:", randomEmail);
+    console.log("Random Username:", randomUsername);
+    console.log("Random UUID:", randomUUID);
   });
 });

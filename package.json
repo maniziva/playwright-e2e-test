@@ -19,7 +19,9 @@
   },
   "dependencies": {
     "csv-parse": "^5.5.5",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.1",
-    "playwright": "^1.49.1"
+    "playwright": "^1.49.1",
+    "uuid": "^11.1.0"
   }
 }

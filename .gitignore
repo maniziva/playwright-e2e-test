@@ -9,3 +9,4 @@ src/setup/api-loginAuth.json
 .DS_Store
 src/download/info.txt
 src/setup/auth-token.json
+/allure-report

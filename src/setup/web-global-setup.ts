@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { chromium, expect , FullConfig} from '@playwright/test';
 
 const baseURL = process.env.BASEURL as string;
 if (!baseURL) {
@@ -13,7 +13,11 @@ if (!password) {
   throw new Error('PASSWORD environment variable is not defined');
 }
 
-test('test', async ({ page }) => {
+async function globalSetup(config: FullConfig) {
+
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+
   // Goto Base URL
   await page.goto(baseURL);
   // Input Login
@@ -23,4 +27,9 @@ test('test', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Contact List' })).toBeVisible();
   await page.waitForTimeout(2000); // Adjust timing if necessary
   await page.context().storageState({ path: "./src/setup/web-loginAuth.json" });
-});
+
+  await browser.close();
+
+};
+
+export default globalSetup;

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 const baseURL = process.env.BASEURL;
 
-test('test', async ({ page }) => {
+test('Update contact', async ({ page }) => {
     await page.goto(baseURL + "contactList");
     await page.getByRole('heading', { name: 'Contact List' }).click();
     // Update Contact

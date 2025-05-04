@@ -3,7 +3,7 @@ const baseURL = process.env.BASEURL;
 const username = process.env.MAILID as string;
 const password = process.env.PASSWORD;
 
-test.only('API response time should be under 2 seconds', async ({  }) => {
+test('API response time should be under 2 seconds', async ({  }) => {
   const thresholdMs = 2000; // 2 seconds
 
   const startTime = performance.now();

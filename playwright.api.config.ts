@@ -8,7 +8,7 @@ dotenv.config({ path: envFile });
 export default defineConfig({
   globalSetup: require.resolve('./src/setup/api-global-setup'),
   timeout: 60000,
-  testDir: './test/interview-practice',
+  testDir: './test/api-test',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,

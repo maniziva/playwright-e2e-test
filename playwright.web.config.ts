@@ -6,6 +6,7 @@ const envFile = process.env.ENV_FILE || './src/env/staging.env';
 dotenv.config({ path: envFile });
 
 export default defineConfig({
+  globalSetup: require.resolve('./src/setup/web-global-setup'),
   timeout: 60000,
   testDir: './test/web-test',
   fullyParallel: false,
@@ -20,13 +21,7 @@ export default defineConfig({
   },
   projects: [
     {
-      name: "setup",
-      testDir: "./",
-      testMatch: "web-global-setup.ts",
-    },
-    {
       name: 'chromium',
-      dependencies: ["setup"],
       use: {
         ...devices['Desktop Chrome'],
         headless: true,
@@ -34,15 +29,15 @@ export default defineConfig({
         viewport: { width: 1440, height: 900 } // Desktop Chrome viewport
       },
     },
-    {
-      name: 'iphone',
-      dependencies: ["setup"],
-      use: {
-        ...devices['iPhone 13'],
-        headless: true,
-        storageState: "./src/setup/web-loginAuth.json",
-        viewport: { width: 390, height: 844 } // iPhone 13 viewport
-      },
-    }
+    // {
+    //   name: 'iphone',
+    //   dependencies: ["setup"],
+    //   use: {
+    //     ...devices['iPhone 13'],
+    //     headless: true,
+    //     storageState: "./src/setup/web-loginAuth.json",
+    //     viewport: { width: 390, height: 844 } // iPhone 13 viewport
+    //   },
+    // }
   ],
 });

@@ -47,7 +47,9 @@ jobs:
           command: npx playwright test -c playwright.web.config.ts  
       - run:
           name: Generate Allure Report
-          command: npm run allure:generate
+          command: |
+            mkdir -p allure-results
+            npm run allure:generate || echo "Allure report generation failed"
       - store_artifacts:
           path: allure-report
       - store_test_results:
@@ -75,7 +77,9 @@ jobs:
           command: npx playwright test -c playwright.api.config.ts  
       - run:
           name: Generate Allure Report
-          command: npm run allure:generate
+          command: |
+            mkdir -p allure-results
+            npm run allure:generate || echo "Allure report generation failed"
       - store_artifacts:
           path: allure-report
       - store_test_results:

@@ -49,7 +49,11 @@ jobs:
           name: Generate Allure Report
           command: |
             mkdir -p allure-results
-            npm run allure:generate || echo "Allure report generation failed"
+            if [ -d "allure-results" ]; then
+              npm run allure:generate || echo "Allure report generation failed"
+            else
+              echo "No allure-results directory found, skipping report generation"
+            fi
       - store_artifacts:
           path: allure-report
       - store_test_results:

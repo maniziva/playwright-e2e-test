@@ -18,6 +18,7 @@ export default defineConfig({
     trace: "retain-on-failure", //"on", "off", "retain-on-failure",
     video: "retain-on-failure", //"on", "off", "retain-on-failure",
     screenshot: "only-on-failure", //"on", "off", "only-on-failure",
+    storageState: "./src/setup/web-loginAuth.json",
   },
   projects: [
     {
@@ -25,17 +26,14 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         headless: true,
-        storageState: "./src/setup/web-loginAuth.json",
         viewport: { width: 1440, height: 900 } // Desktop Chrome viewport
       },
     },
     // {
     //   name: 'iphone',
-    //   dependencies: ["setup"],
     //   use: {
     //     ...devices['iPhone 13'],
     //     headless: true,
-    //     storageState: "./src/setup/web-loginAuth.json",
     //     viewport: { width: 390, height: 844 } // iPhone 13 viewport
     //   },
     // }

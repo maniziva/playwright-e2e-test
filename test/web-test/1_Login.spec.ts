@@ -13,7 +13,7 @@ if (!password) {
   throw new Error('PASSWORD environment variable is not defined');
 }
 
-test.skip('test', async ({ page }) => {
+test('test', async ({ page }) => {
   // Goto Base URL
   await page.goto(baseURL);
   // Input Login

@@ -6,20 +6,19 @@ const envFile = process.env.ENV_FILE || './src/env/staging.env';
 dotenv.config({ path: envFile });
 
 export default defineConfig({
-  //globalSetup: require.resolve('./src/setup/web-global-setup'),
+  globalSetup: require.resolve('./src/setup/web-global-setup'),
   timeout: 60000,
-  testDir: './test/interview-practice/after',
-  outputDir: 'test-results/',
+  testDir: './test/web-test',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 2 : 4,
   reporter: [['html'], ['allure-playwright'], ['junit', { outputFile: 'test-results/junit-report.xml' }]],
   use: {
     trace: "retain-on-failure", //"on", "off", "retain-on-failure",
     video: "retain-on-failure", //"on", "off", "retain-on-failure",
-    screenshot: "on"//"only-on-failure", //"on", "off", "only-on-failure",
-    //storageState: "./src/setup/web-loginAuth.json",
+    screenshot: "only-on-failure", //"on", "off", "only-on-failure",
+    storageState: "./src/setup/web-loginAuth.json",
   },
   projects: [
     {

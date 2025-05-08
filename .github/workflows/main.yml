@@ -3,7 +3,7 @@ name: Playwright Tests-1
 on:
   push:
     branches:
-      - test-practice
+      - maniziva-patch-1
 
 jobs:
   playwright-run:

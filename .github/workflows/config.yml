@@ -1,9 +1,9 @@
 name: Playwright Tests
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - test-practice
 
 jobs:
   test:
@@ -32,7 +32,7 @@ jobs:
 
     - name: Upload Playwright report
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: playwright-report
         path: playwright-report

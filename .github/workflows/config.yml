@@ -29,10 +29,3 @@ jobs:
 
     - name: Run Playwright API tests
       run: npx playwright test 1_Login.spec.ts -c playwright.api.config.ts
-
-    - name: Upload Playwright report
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: playwright-report
-        path: playwright-report

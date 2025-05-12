@@ -35,7 +35,7 @@ test.describe.parallel("API Practice", async () => {
     expect(getResponseData.email).toContain("master@gmail.com");
   });
 
-  test.only("Get My name", async ({ request }) => {
+  test("Get My name", async ({ request }) => {
     const getResponse = await request.get("contacts", {
       headers: {
         Authorization: `Bearer ${token}`,

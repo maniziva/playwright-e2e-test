@@ -3,6 +3,9 @@
 import { test, expect } from "@playwright/test";
 import fs from "fs";
 import path from "path";
+import { writeFileSync } from 'fs';
+import exp from "constants";
+
 
 const baseURL = "https://testautomationpractice.blogspot.com/";
 
@@ -191,3 +194,64 @@ test("Check page title and content - Assertion", async ({ page }) => {
   // Assert URL
   await expect(page).toHaveURL("https://example.com/");
 });
+
+// test.only('Web table', async({page})=>{
+//   await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+//   const row = await page.locator('//table[@name="courses"]/tbody/tr');
+//   // const rowHead = row.locator('th');
+//   const rowCount =  await row.count();
+//   console.log(rowCount);
+
+//   // const instructorhead = await rowHead.nth(0).textContent();
+//   // const coursehead = await rowHead.nth(1).textContent();
+//   // const pricehead = await rowHead.nth(2).textContent();
+
+//   //console.log(`${instructorhead?.trim()} | ${coursehead?.trim()} | ${pricehead?.trim()}`);
+
+//   const tableData = [];
+
+//   for(let i=1; i<rowCount; i++){
+//     const rows = await row.nth(i);
+//     // const instructor = await rows.locator('td').nth(0).textContent();
+//     // const course = await rows.locator('td').nth(1).textContent();
+//     // const price = await rows.locator('td').nth(2).textContent();
+
+//     // console.log(`${i} | ${instructor?.trim()} | ${course?.trim()} | ${price?.trim()}`);
+
+//     tableData.push({
+//       Instructor: (await rows.locator('td').nth(0).textContent())?.trim(),
+//       Course: (await rows.locator('td').nth(1).textContent())?.trim(),
+//       Price: (await rows.locator('td').nth(2).textContent())?.trim(),
+//     });
+//   }
+//   fs.writeFileSync("./src/download/tableData.json", JSON.stringify(tableData, null, 2));
+//   //console.log(tableData);
+
+//   const expectedData = JSON.parse(fs.readFileSync('src/download/tableData.json', 'utf-8'));
+//   await expect(expectedData).toEqual(tableData);
+// });
+
+
+// test('Compare table data with JSON file', async ({ page }) => {
+//   await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+
+//   // Load expected data from JSON file
+//   const expectedData = JSON.parse(fs.readFileSync('src/download/tableData.json', 'utf-8'));
+
+//   // Get all rows except header
+//   const rows = page.locator('table[name="courses"] tbody tr');
+//   const actualData = [];
+
+//   for (let i = 1; i < await rows.count(); i++) {
+//     const cells = rows.nth(i).locator('td');
+//     actualData.push({
+//       Instructor: (await cells.nth(0).textContent())?.trim(),
+//       Course: (await cells.nth(1).textContent())?.trim(),
+//       Price: (await cells.nth(2).textContent())?.trim(),
+//     });
+//   }
+
+//   // Simple deep equality assertion
+//   expect(actualData).toEqual(expectedData);
+// });
+

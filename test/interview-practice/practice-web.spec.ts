@@ -1,6 +1,7 @@
 //import { expect, test } from "@playwright/test";
 import { test } from "@fixtures/test-helpers-fixtures";
 import { expect } from "@playwright/test";
+import exp from "constants";
 
 const baseURL = "https://testautomationpractice.blogspot.com/";
 
@@ -262,10 +263,10 @@ test.describe.parallel("Practice - Web", async () => {
   });
   test("Visual testing", async ({ page }) => {
     await page.goto("https://thinking-tester-contact-list.herokuapp.com/");
-    await expect(page).toHaveScreenshot(".src/snapshots/loginpage-full.png", {
+    await expect(page).toHaveScreenshot(".loginpage-full.png", {
       fullPage: true,
-      threshold: 0.1,
-    });
+      threshold: 0.1,  //maxDiffPixels: 10   
+        });
   });
   test("[@performance] Measure navigation timings", async ({ page }) => {
       await page.goto("https://example.com");

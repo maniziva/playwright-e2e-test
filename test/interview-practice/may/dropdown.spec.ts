@@ -1,7 +1,7 @@
 import{test} from '@playwright/test';
 
 test.describe('Test suite', ()=>{
-    test.only('Handle Dropdown data-1', async({page})=>{
+    test('Handle Dropdown data-1', async({page})=>{
         await page.goto('https://practice.expandtesting.com/dropdown');
         
         // Select the dropdown element

@@ -54,7 +54,7 @@ test('Handle table data-2', async({page})=>{
     console.table(tabledata);
 });
 
-test.only('Handle web table -3', async({page}) =>{
+test('Handle web table -3', async({page}) =>{
     await page.goto('https://practice-automation.com/tables/');
 
     await page.locator('select[aria-controls="tablepress-1"]').selectOption('100');

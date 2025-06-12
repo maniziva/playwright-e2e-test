@@ -1,5 +1,4 @@
 import{expect, test} from '@playwright/test';
-import { title } from 'process';
 
 test.describe('Test suite', ()=>{
     test('Handle ecommerce Get all prodecuts', async({page})=>{

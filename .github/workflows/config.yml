@@ -2,34 +2,33 @@ name: Playwright Tests
 
 on:
   push:
-    branches:
-      - interview
+    branches: interview
 
 jobs:
-  playwright-run:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install Playwright browsers
-      run: npx playwright install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-    - name: Run Playwright web tests
-      run: npx playwright test 1_Login.spec.ts -c playwright.web.config.ts
+      - name: Run Playwright tests
+        run: npx playwright test -c playwright.web.config.ts 
 
-    - name: Upload Playwright test report (optional)
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: playwright-report
-        path: playwright-report/
+      - name: Upload Playwright test report (optional)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report/

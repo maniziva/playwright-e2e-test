@@ -1,6 +1,4 @@
 import {expect, Locator, selectors, test} from '@playwright/test';
-import { Console } from 'console';
-import exp from 'constants';
 
 test('Multi dropdown', async({page})=>{
   await page.goto('https://testautomationpractice.blogspot.com/')

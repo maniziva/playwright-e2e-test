@@ -1,0 +1,24 @@
+import { Locator, Page, test } from '@playwright/test';
+
+export class HomePage{
+    readonly page: Page;
+    readonly name: Locator;
+    readonly gender: Locator;
+    readonly days: Locator;
+    readonly country: Locator;
+
+    constructor(page: Page){
+        this.page = page;
+        this.name = page.locator('#name')
+        this.gender = page.locator('#male')
+        this.days = page.locator('#sunday')
+        this.country = page.locator('#country')
+    }
+
+    async getDropdownValues(){
+        const values = await this.country.evaluate((select) =>{
+            return[...(select as HTMLSelectElement).options].map((option)=> option.value);
+        })
+        console.table(values);
+    }
+}

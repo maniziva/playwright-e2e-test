@@ -1,7 +1,7 @@
 import {expect, Locator, test} from '@playwright/test';
 import * as fs from 'fs';
 
-test.skip('table', async({page})=>{
+test('table', async({page})=>{
     await page.goto("https://thinking-tester-contact-list.herokuapp.com/");
     await page.locator("#email").fill('route@gmail.com');
     await page.locator("#password").fill('Info@1234');

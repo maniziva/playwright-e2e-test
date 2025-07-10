@@ -22,3 +22,14 @@ export class HomePage{
         console.table(values);
     }
 }
+
+export class Dashboard extends HomePage {
+    constructor(page: Page) {
+        super(page); // Call the parent class constructor
+    }
+
+    async fillName(name: string){
+        await this.name.fill(name);
+    }
+}
+

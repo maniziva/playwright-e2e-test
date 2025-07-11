@@ -1,38 +1,20 @@
-import {expect, Locator, test} from '@playwright/test';
-import { Console } from 'console';
-import exp from 'constants';
+import {expect, Locator, selectors, test} from '@playwright/test';
 
-test.skip('dropdown', async({page})=>{
-    await page.goto('https://testautomationpractice.blogspot.com/');
-    await page.waitForLoadState('networkidle');
-    await expect(page).toHaveTitle('Automation Testing Practice');
-    
-    const multi = page.locator('#colors');c
+test('Multi dropdown', async({page})=>{
+  await page.goto('https://testautomationpractice.blogspot.com/')
 
-    const values = await multi.evaluate((select) => {
-      return [...(select as HTMLSelectElement).options].map(option => option.value);
-    });
-    console.table(values);
+  const drop = page.locator('#animals');
+  const values = await drop.evaluate((select) =>{
+    return [...(select as HTMLSelectElement).options].map((options) => options.value);
+  })
+  console.table(values);
 
-    await multi.selectOption([{ value: 'red' }, { value: 'blue' }]);
-    await multi.scrollIntoViewIfNeeded();
-    
-    const selectedValues = await multi.evaluate((select) => {
-      return [...(select as HTMLSelectElement).selectedOptions].map(option => option.value);
-    });
-    console.log(selectedValues);
-    expect(selectedValues).toEqual(['red', 'blue']);
-})
+  await drop.selectOption([{value: 'cheetah'},{value:'deer'}]);
+  await drop.scrollIntoViewIfNeeded();
 
-test('single dropdown', async({page}) =>{
-  await page.goto('https://testautomationpractice.blogspot.com/');
-  await page.waitForLoadState('networkidle');
-  await expect(page).toHaveTitle('Automation Testing Practice');
-
-  const drop = await page.getByRole('combobox', {name: 'Country'})
-  await drop.selectOption({value: 'canada'});
-  const selected = await drop.inputValue();
-  //console.log(selected);
-  //await expect(selected).toBe('canada');
-  await expect(drop).toHaveValue('canada');
+  const selectedValues = await drop.evaluate((select) =>{
+    return [...(select as HTMLSelectElement).selectedOptions].map((options) => options.value);
+  });
+  console.table(selectedValues);
+  await expect(selectedValues).toEqual(['cheetah','deer']);
 })

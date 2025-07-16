@@ -6,6 +6,8 @@ export class HomePage{
     readonly gender: Locator;
     readonly days: Locator;
     readonly country: Locator;
+    //dropdown: Locator;
+
 
     constructor(page: Page){
         this.page = page;
@@ -15,11 +17,12 @@ export class HomePage{
         this.country = page.locator('#country')
     }
 
-    async getDropdownValues(){
-        const values = await this.country.evaluate((select) =>{
-            return[...(select as HTMLSelectElement).options].map((option)=> option.value);
-        })
-        console.table(values);
+    async getDropdownValues(locator: string) {
+        const dropdown = this.page.locator(locator);
+        const values = await dropdown.evaluate((select) => {
+            return [...(select as HTMLSelectElement).options].map((option) => option.value);
+        });
+        return values;
     }
 }
 

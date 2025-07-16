@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe.serial.only("API suite", () => {
+test.describe.serial("API suite", () => {
   let token: string;
   test("Login API", async ({ request }) => {
     const req = await request.post(

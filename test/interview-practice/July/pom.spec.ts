@@ -7,5 +7,9 @@ test('POM check', async({page})=>{
     await homepage.name.fill('Manikandan');
     await homepage.gender.click();
     await homepage.days.click();
-    await homepage.getDropdownValues();
+    
+    const CountryValues = await homepage.getDropdownValues('#country');
+    console.table(CountryValues);
+    const ColorsValues = await homepage.getDropdownValues('#colors');
+    console.table(ColorsValues);
 });

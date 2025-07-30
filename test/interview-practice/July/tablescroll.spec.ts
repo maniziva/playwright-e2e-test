@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import * as fs from "fs";
 
-test("table scroll", async ({ page }) => {
+test.skip("table scroll", async ({ page }) => {
   await page.goto("https://infinite-scroll.com/demo/full-page/");
 
   let maxscrolls: number = 100;

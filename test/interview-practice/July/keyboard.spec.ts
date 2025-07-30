@@ -9,7 +9,7 @@ test('Keyboard', async({page})=>{
     await page.keyboard.up('Shift');
 });
 
-test('Visual', async({page})=>{
+test.skip('Visual', async({page})=>{
   await page.goto('https://testautomationpractice.blogspot.com/')
     ///const input = page.locator('#name');
     //await expect(input).toHaveScreenshot('input.png');

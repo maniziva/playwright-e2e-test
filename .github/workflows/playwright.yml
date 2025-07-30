@@ -5,7 +5,7 @@ on:
     branches: [github]
 
 permissions:
-  contents: write  # ✅ Allows the GitHub Actions bot to push to gh-pages branch
+  contents: write  # ✅ Required for pushing to gh-pages branch
 
 jobs:
   test:
@@ -49,11 +49,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: playwright-report
-          path: playwright-report
+          path: ./gh-pages-content/playwright-report  # ✅ Move report to subfolder
 
-      - name: Deploy HTML report to GitHub Pages
+      - name: Deploy HTML report to GitHub Pages (under sub-path)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./playwright-report
-          force_orphan: true  # ✅ Ensures a clean gh-pages branch for first-time setup
+          publish_dir: ./gh-pages-content
+          force_orphan: true

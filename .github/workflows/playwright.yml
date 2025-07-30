@@ -5,7 +5,7 @@ on:
     branches: [github]
 
 permissions:
-  contents: write  # ✅ Required for pushing to gh-pages branch
+  contents: write  # Needed for GitHub Pages deployment
 
 jobs:
   test:
@@ -23,20 +23,32 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
+      - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
+      - name: Run Playwright Tests
         run: npx playwright test -c playwright.web.config.ts
 
-      - name: Upload Playwright test report (artifact)
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline
+          allure generate allure-results --clean -o allure-report
+
+      - name: Upload Playwright Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report/
 
-  deploy-report:
+      - name: Upload Allure Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
+
+  deploy-reports:
     needs: test
     if: always()
     runs-on: ubuntu-latest
@@ -45,15 +57,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Download HTML report artifact
+      - name: Set timestamp
+        id: timestamp
+        run: |
+          echo "📅 Timestamp: $(date)"
+          echo "timestamp=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+
+      - name: Download Playwright Report
         uses: actions/download-artifact@v4
         with:
           name: playwright-report
-          path: ./gh-pages-content/playwright-report  # ✅ Move report to subfolder
+          path: ./gh-pages-content/playwright-report/${{ steps.timestamp.outputs.timestamp }}
 
-      - name: Deploy HTML report to GitHub Pages (under sub-path)
+      - name: Download Allure Report
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-report
+          path: ./gh-pages-content/allure-report/${{ steps.timestamp.outputs.timestamp }}
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-content
-          force_orphan: true
+          force_orphan: false  # Preserves older versions

@@ -1,0 +1,10 @@
+{
+  user: {
+    _id: '68025c5ce86fb700159aa665',
+    firstName: 'Updated',
+    lastName: 'Username',
+    email: 'master@gmail.com',
+    __v: 552
+  },
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAyNWM1Y2U4NmZiNzAwMTU5YWE2NjUiLCJpYXQiOjE3NTM4Nzg5OTh9.EIxDgr-3-TJO9zIOdjisQSorivmvRUlAJIt0wAoP460'
+}

@@ -1,0 +1,7 @@
+{
+  _id: '68025c5ce86fb700159aa665',
+  firstName: 'Updated',
+  lastName: 'Username',
+  email: 'master@gmail.com',
+  __v: 553
+}

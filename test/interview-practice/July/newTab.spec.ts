@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.only("New Tab", async ({ browser }) => {
+test("New Tab", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
 

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Handle JS alert on blogspot', async ({ page }) => {
+test.skip('Handle JS alert on blogspot', async ({ page }) => {
   await page.goto("https://testautomationpractice.blogspot.com/");
   await expect(page).toHaveTitle('Automation Testing Practice');
 

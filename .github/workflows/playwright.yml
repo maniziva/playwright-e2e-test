@@ -60,8 +60,11 @@ jobs:
       - name: Set timestamp
         id: timestamp
         run: |
-          echo "📅 Timestamp: $(date)"
-          echo "timestamp=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+          ts=$(date +'%Y-%m-%d_%H-%M-%S')
+          echo "timestamp=$ts" >> $GITHUB_OUTPUT
+          echo "📝 Report URLs:"
+          echo "Playwright: https://maniziva.github.io/playwright-e2e-test/playwright-report/$ts/"
+          echo "Allure:     https://maniziva.github.io/playwright-e2e-test/allure-report/$ts/"
 
       - name: Download Playwright Report
         uses: actions/download-artifact@v4

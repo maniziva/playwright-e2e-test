@@ -2,7 +2,10 @@ name: Playwright Tests
 
 on:
   push:
-    branches: github
+    branches: [github]
+
+permissions:
+  contents: write  # ✅ Allows the GitHub Actions bot to push to gh-pages branch
 
 jobs:
   test:
@@ -24,9 +27,9 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test -c playwright.web.config.ts 
+        run: npx playwright test -c playwright.web.config.ts
 
-      - name: Upload Playwright test report (optional)
+      - name: Upload Playwright test report (artifact)
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -53,3 +56,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./playwright-report
+          force_orphan: true  # ✅ Ensures a clean gh-pages branch for first-time setup

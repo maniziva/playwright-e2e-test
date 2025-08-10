@@ -15,6 +15,8 @@ test.describe.serial("API suite", () => {
     const res = await req.json();
     console.log(res);
     token = res.token;
+    const st = await req.status();
+    console.log(st)
   });
 
   test("Get user", async ({ request }) => {

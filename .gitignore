@@ -10,3 +10,6 @@ src/setup/api-loginAuth.json
 src/download/info.txt
 src/setup/auth-token.json
 /allure-report
+
+# Playwright
+node_modules/

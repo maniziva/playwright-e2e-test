@@ -86,8 +86,28 @@ test.describe.parallel("Practice - Web", async () => {
     // expect(json.status).toBe('success');
   });
   test("11. Frames", async ({ page }) => {
-        await page.goto("https://demo.automationtesting.in/Frames.html");
-        const frame1 = page.frame({ name: "SingleFrame" });
-        await frame1.locator('input[type="text"]').fill('Manikandan');
+    await page.goto("https://demo.automationtesting.in/Frames.html");
+    const frame1 = page.frame({ name: "SingleFrame" });
+    await frame1.locator('input[type="text"]').fill("Manikandan");
+  });
+  test("12. Get dropdown Values", async ({ page }) => {
+    const dropdown = page.locator("#country");
+    const values = await dropdown.evaluate((select) => {
+      return [...(select as HTMLSelectElement).options].map(
+        (option) => option.text
+      );
+    });
+    console.log(values);
+  });
+
+    test("12. Get slected dropdown Values", async ({ page }) => {
+    const dropdown = page.locator("#country");
+    await dropdown.selectOption("canada");
+    const values = await dropdown.evaluate((select) => {
+      return [...(select as HTMLSelectElement).selectedOptions].map(
+        (option) => option.text
+      );
+    });
+    console.log(values);
   });
 });

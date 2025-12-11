@@ -39,29 +39,55 @@ test.describe.parallel("Practice - Web", async () => {
 
     const multipleFilesInput = page.locator('input[id="multipleFilesInput"]');
     await multipleFilesInput.click();
-    await multipleFilesInput.setInputFiles(["./src/data/UserData.json", "./src/data/tableData.json"]);
+    await multipleFilesInput.setInputFiles([
+      "./src/data/UserData.json",
+      "./src/data/tableData.json",
+    ]);
   });
   test("7.Screenshot", async ({ page }) => {
-    await page.screenshot({path:"./src/download/screenshot.jpg",fullPage: true});
+    await page.screenshot({
+      path: "./src/download/screenshot.jpg",
+      fullPage: true,
+    });
     const singleFileInput = page.locator('input[id="singleFileInput"]');
-    await singleFileInput.screenshot({path: "./src/download/screenshot.png"})
+    await singleFileInput.screenshot({ path: "./src/download/screenshot.png" });
   });
   test("8.Drag and drop", async ({ page }) => {
     await page.dragAndDrop('div[id="draggable"]', 'div[id="droppable"]');
-    await page.locator('div[id="droppable"]').screenshot({path:"./src/download/dragAndDrop.png"})
+    await page
+      .locator('div[id="droppable"]')
+      .screenshot({ path: "./src/download/dragAndDrop.png" });
   });
   test("9.Visual Testing", async ({ page }) => {
     //await expect(page.locator('div[id="droppable"]')).toHaveScreenshot();
     await expect(page).toHaveScreenshot({
       fullPage: true,
-       threshold: 0.5, 
-        mask: [
-          page.locator('#HTML12'),
-          page.locator('.section-columns'),
-          page.locator('#Stats1_content')
-        ]
-      });
+      threshold: 0.5,
+      mask: [
+        page.locator("#HTML12"),
+        page.locator(".section-columns"),
+        page.locator("#Stats1_content"),
+      ],
+    });
   });
-
-
+  test("10. Assertions", async ({ page }) => {
+    //Auto retry assertions
+    //Assertions
+    // await expect(page).toHaveTitle('title');
+    // await expect(page).toHaveURL(/regex/);
+    // await expect(locator).toHaveText('text');
+    // await expect(locator).toHaveValue('value');
+    // await expect(locator).toBeVisible();
+    // await expect(locator).toBeHidden();"
+    // //Non-Auto retry Assertions
+    // const val = await page.locator('h1').textContent(); // .innerText();
+    // expect(val).toBe('Welcome');
+    // const json = await response.json();
+    // expect(json.status).toBe('success');
+  });
+  test("11. Frames", async ({ page }) => {
+        await page.goto("https://demo.automationtesting.in/Frames.html");
+        const frame1 = page.frame({ name: "SingleFrame" });
+        await frame1.locator('input[type="text"]').fill('Manikandan');
+  });
 });

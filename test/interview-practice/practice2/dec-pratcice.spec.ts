@@ -99,8 +99,7 @@ test.describe.parallel("Practice - Web", async () => {
     });
     console.log(values);
   });
-
-    test("12. Get slected dropdown Values", async ({ page }) => {
+  test("12. Get slected dropdown Values", async ({ page }) => {
     const dropdown = page.locator("#country");
     await dropdown.selectOption("canada");
     const values = await dropdown.evaluate((select) => {
@@ -109,5 +108,29 @@ test.describe.parallel("Practice - Web", async () => {
       );
     });
     console.log(values);
+  });
+  test("13. Simple Alert", async ({ page }) => {
+    page.on("dialog", async (dialog) => {
+      console.log(dialog.message());
+      dialog.accept();
+    });
+
+    await page.locator('button[id="alertBtn"]').click();
+  });
+
+  test("14. confirmBtn Alert", async ({ page }) => {
+    page.on("dialog", async (dialog) => {
+      console.log(dialog.message());
+      dialog.dismiss();
+    });
+    await page.locator('button[id="confirmBtn"]').click();
+  });
+
+  test("15. promptBtn Alert", async ({ page }) => {
+    page.on("dialog", async (dialog) => {
+      console.log(dialog.message());
+      dialog.accept("Ok");
+    });
+    await page.locator('button[id="promptBtn"]').click();
   });
 });

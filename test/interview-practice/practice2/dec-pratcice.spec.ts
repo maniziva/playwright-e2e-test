@@ -133,4 +133,17 @@ test.describe.parallel("Practice - Web", async () => {
     });
     await page.locator('button[id="promptBtn"]').click();
   });
+
+  test("16. Assert - Multi Dropdown", async ({ page }) => {
+    const dropdown = page.locator("#animals");
+    await dropdown.selectOption([{ value: "cheetah" },{value:"dog"}]);
+
+    await dropdown.screenshot({path:"./src/download/multi-drop.png"});
+    const selectedValues = await dropdown.evaluate((select)=> {
+      return [...(select as HTMLSelectElement).selectedOptions].map(options => options.text)
+    });
+    console.log(selectedValues);
+
+    await expect(selectedValues).toEqual([ 'Cheetah', 'Dog' ])
+  });
 });

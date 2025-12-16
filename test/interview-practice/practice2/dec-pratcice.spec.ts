@@ -136,14 +136,45 @@ test.describe.parallel("Practice - Web", async () => {
 
   test("16. Assert - Multi Dropdown", async ({ page }) => {
     const dropdown = page.locator("#animals");
-    await dropdown.selectOption([{ value: "cheetah" },{value:"dog"}]);
+    await dropdown.selectOption([{ value: "cheetah" }, { value: "dog" }]);
 
-    await dropdown.screenshot({path:"./src/download/multi-drop.png"});
-    const selectedValues = await dropdown.evaluate((select)=> {
-      return [...(select as HTMLSelectElement).selectedOptions].map(options => options.text)
+    await dropdown.screenshot({ path: "./src/download/multi-drop.png" });
+    const selectedValues = await dropdown.evaluate((select) => {
+      return [...(select as HTMLSelectElement).selectedOptions].map(
+        (options) => options.text
+      );
     });
     console.log(selectedValues);
 
-    await expect(selectedValues).toEqual([ 'Cheetah', 'Dog' ])
+    await expect(selectedValues).toEqual(["Cheetah", "Dog"]);
+  });
+
+  test("17. Download File", async ({ page }) => {
+    await page.goto(
+      "https://testautomationpractice.blogspot.com/p/download-files_25.html"
+    );
+    const input = await page.locator('textarea[id="inputText"]');
+    await input.fill("check");
+    await page
+      .getByRole("button", { name: "Generate and Download Text File" })
+      .click();
+    const link = page.getByRole("link", { name: "Download Text File" });
+    await expect(link).toBeVisible();
+
+    const [download] = await Promise.all([
+      page.waitForEvent("download"),
+      link.click(),
+    ]);
+    await download.saveAs("src/download/downloaded.txt");
+  });
+
+  test("18. Popup", async ({ page }) => {
+    const [popup] = await Promise.all([
+      page.waitForEvent("popup"),
+      page.locator('button[id="PopUp"]').click(),
+    ]);
+    await page.screenshot({ path: "src/download/popup1.png" });
+    await popup.close();
+    await page.screenshot({ path: "src/download/popup2.png" });
   });
 });

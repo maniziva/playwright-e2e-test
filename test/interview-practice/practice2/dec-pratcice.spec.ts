@@ -99,8 +99,7 @@ test.describe.parallel("Practice - Web", async () => {
     });
     console.log(values);
   });
-
-    test("12. Get slected dropdown Values", async ({ page }) => {
+  test("12. Get slected dropdown Values", async ({ page }) => {
     const dropdown = page.locator("#country");
     await dropdown.selectOption("canada");
     const values = await dropdown.evaluate((select) => {
@@ -109,5 +108,73 @@ test.describe.parallel("Practice - Web", async () => {
       );
     });
     console.log(values);
+  });
+  test("13. Simple Alert", async ({ page }) => {
+    page.on("dialog", async (dialog) => {
+      console.log(dialog.message());
+      dialog.accept();
+    });
+
+    await page.locator('button[id="alertBtn"]').click();
+  });
+
+  test("14. confirmBtn Alert", async ({ page }) => {
+    page.on("dialog", async (dialog) => {
+      console.log(dialog.message());
+      dialog.dismiss();
+    });
+    await page.locator('button[id="confirmBtn"]').click();
+  });
+
+  test("15. promptBtn Alert", async ({ page }) => {
+    page.on("dialog", async (dialog) => {
+      console.log(dialog.message());
+      dialog.accept("Ok");
+    });
+    await page.locator('button[id="promptBtn"]').click();
+  });
+
+  test("16. Assert - Multi Dropdown", async ({ page }) => {
+    const dropdown = page.locator("#animals");
+    await dropdown.selectOption([{ value: "cheetah" }, { value: "dog" }]);
+
+    await dropdown.screenshot({ path: "./src/download/multi-drop.png" });
+    const selectedValues = await dropdown.evaluate((select) => {
+      return [...(select as HTMLSelectElement).selectedOptions].map(
+        (options) => options.text
+      );
+    });
+    console.log(selectedValues);
+
+    await expect(selectedValues).toEqual(["Cheetah", "Dog"]);
+  });
+
+  test("17. Download File", async ({ page }) => {
+    await page.goto(
+      "https://testautomationpractice.blogspot.com/p/download-files_25.html"
+    );
+    const input = await page.locator('textarea[id="inputText"]');
+    await input.fill("check");
+    await page
+      .getByRole("button", { name: "Generate and Download Text File" })
+      .click();
+    const link = page.getByRole("link", { name: "Download Text File" });
+    await expect(link).toBeVisible();
+
+    const [download] = await Promise.all([
+      page.waitForEvent("download"),
+      link.click(),
+    ]);
+    await download.saveAs("src/download/downloaded.txt");
+  });
+
+  test("18. Popup", async ({ page }) => {
+    const [popup] = await Promise.all([
+      page.waitForEvent("popup"),
+      page.locator('button[id="PopUp"]').click(),
+    ]);
+    await page.screenshot({ path: "src/download/popup1.png" });
+    await popup.close();
+    await page.screenshot({ path: "src/download/popup2.png" });
   });
 });

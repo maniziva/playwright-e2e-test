@@ -177,4 +177,18 @@ test.describe.parallel("Practice - Web", async () => {
     await popup.close();
     await page.screenshot({ path: "src/download/popup2.png" });
   });
+  test("19. Scroll", async ({ page }) => {
+    await page.locator('button[id="PopUp"]').scrollIntoViewIfNeeded();
+    await page.evaluate(()=> window.scrollTo(0, document.body.scrollHeight));
+  });
+  test("20. Keyboard actions", async({page})=>{
+    const slide1 = page.locator('(//div[@id="slider-range"]/span)[1]');
+    await slide1.click();
+    await page.keyboard.press('ArrowRight');
+    const color = page.locator('select[id="colors"]');
+    await color.click();
+    await color.selectOption({value:"red"});
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('ArrowDown');
+  })
 });

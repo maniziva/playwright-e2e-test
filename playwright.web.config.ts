@@ -15,10 +15,10 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 2 : 4, // Ensure 4 workers for local execution
-  reporter: [['html',{ open: 'always' }], ['allure-playwright'], ['junit', { outputFile: 'test-results/junit-report.xml' }]],
+  reporter: [['html',{ open: 'never' }], ['allure-playwright'], ['junit', { outputFile: 'test-results/junit-report.xml' }]],
   use: {
     trace: "on",//"retain-on-failure", //"on", "off", "retain-on-failure",
-    video: "retain-on-failure", //"on", "off", "retain-on-failure",
+    video: "on", //"on", "off", "retain-on-failure",
     screenshot:  "on", //"off", "only-on-failure",
     ///storageState: "./src/setup/web-loginAuth.json",
   },

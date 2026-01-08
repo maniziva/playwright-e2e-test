@@ -7,8 +7,20 @@ test.describe("Jan8 Test suite", async () => {
     await page.goto(baseURL);
   });
 
-test('API', async({page, request})=>{
-  
+test('Window handle', async({page, context})=>{
+    await page.goto('https://practice-automation.com/window-operations/');
+    console.log(await page.title());
+
+    const [newPage] = await Promise.all([
+        context.waitForEvent('page'),
+        page.locator('button[onclick="newTab()"]').click()
+    ]);
+
+    const newPageTitle = await newPage.title();
+    console.log(newPageTitle);
+
+    await newPage.bringToFront();
+    await page.bringToFront();
 });
 
 test('Download-Upload', async({page})=>{

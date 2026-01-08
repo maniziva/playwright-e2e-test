@@ -13,3 +13,5 @@ src/setup/auth-token.json
 
 # Playwright
 node_modules/
+src/.DS_Store
+/src/download

@@ -1,1 +1,0 @@
-Number of options in country dropdown is 10

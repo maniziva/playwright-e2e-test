@@ -1,0 +1,14 @@
+10
+┌─────────┬───────────┬────────────────────────┬──────────┬────────────────┬────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ (index) │    ID     │       CourseName       │ Language │     Level      │ Enrollment │                                               Link                                               │
+├─────────┼───────────┼────────────────────────┼──────────┼────────────────┼────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│    0    │ '5393658' │  'Python for Testers'  │ 'Python' │   'Beginner'   │    1365    │                     'https://practicetestautomation.com/python-for-testers'                      │
+│    1    │ '3970682' │    'Selenium Grid'     │  'Java'  │   'Advanced'   │    2207    │                        'https://practicetestautomation.com/selenium-grid'                        │
+│    2    │ '1517620' │  'Selenium Framework'  │  'Java'  │   'Advanced'   │    2667    │ 'https://practicetestautomation.com/selenium-webdriver-test-framework-from-scratch-referralCode' │
+│    3    │ '4536644' │   'Java for Testers'   │  'Java'  │   'Beginner'   │    6678    │                   'https://practicetestautomation.com/java-for-testers-udemy'                    │
+│    4    │ '2854476' │     'REST Assured'     │  'Java'  │ 'Intermediate' │    8254    │                 'https://practicetestautomation.com/rest-assured-course-coupon'                  │
+│    5    │ '4824578' │ 'Selenium with Python' │ 'Python' │   'Beginner'   │   10705    │                    'https://practicetestautomation.com/selenium-python-udemy'                    │
+│    6    │ '1743612' │    'XPath Locators'    │  'Any'   │   'Beginner'   │   14762    │                     'https://practicetestautomation.com/xpath-course-coupon'                     │
+│    7    │ '1904956' │  'Advanced Selenium'   │  'Java'  │ 'Intermediate' │   16452    │                   'https://practicetestautomation.com/advanced-course-coupon'                    │
+│    8    │ '1693880' │  'Selenium with Java'  │  'Java'  │   'Beginner'   │   64284    │                   'https://practicetestautomation.com/beginners-course-coupon'                   │
+└─────────┴───────────┴────────────────────────┴──────────┴────────────────┴────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┘

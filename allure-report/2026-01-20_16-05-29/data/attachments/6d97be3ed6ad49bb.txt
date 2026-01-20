@@ -1,0 +1,132 @@
+[
+  'http://testautomationpractice.blogspot.com/',
+  'https://www.pavanonlinetrainings.com/p/udemy-courses.html',
+  'https://www.pavanonlinetrainings.com/',
+  'https://www.pavantestingtools.com/',
+  'https://testautomationpractice.blogspot.com/p/playwrightpractice.html',
+  '',
+  'https://testautomationpractice.blogspot.com/2018/09/automation-form.html',
+  'https://testautomationpractice.blogspot.com/',
+  'https://testautomationpractice.blogspot.com/feeds/posts/default',
+  'https://testautomationpractice.blogspot.com/#',
+  'https://testautomationpractice.blogspot.com/#',
+  'https://testautomationpractice.blogspot.com/#',
+  'https://testautomationpractice.blogspot.com/#',
+  'https://wikipedia.org/wiki/',
+  'https://testautomationpractice.blogspot.com/#',
+  'https://testautomationpractice.blogspot.com/#',
+  'https://www.apple.com/',
+  'https://www.lenovo.com/',
+  'https://www.dell.com/',
+  'http://www.deadlinkcity.com/error-page.asp?e=400',
+  'http://www.deadlinkcity.com/error-page.asp?e=401',
+  'http://www.deadlinkcity.com/error-page.asp?e=403',
+  'http://www.deadlinkcity.com/error-page.asp?e=404',
+  'http://www.deadlinkcity.com/error-page.asp?e=408',
+  'http://www.deadlinkcity.com/error-page.asp?e=500',
+  'http://www.deadlinkcity.com/error-page.asp?e=502',
+  'http://www.deadlinkcity.com/error-page.asp?e=503',
+  'http://testautomationpractice.blogspot.com/',
+  'https://testautomationpractice.blogspot.com/p/gui-elements-ajax-hidden.html',
+  'https://testautomationpractice.blogspot.com/p/download-files_25.html',
+  'https://www.youtube.com/@sdetpavan/videos',
+  'http://www.istockphoto.com/portfolio/merrymoonmary?platform=blogger',
+  'https://www.blogger.com/',
+  'https://www.pavantestingtools.com/'
+]
+[
+  { Link: 'http://testautomationpractice.blogspot.com/', Status: 200 },
+  {
+    Link: 'https://www.pavanonlinetrainings.com/p/udemy-courses.html',
+    Status: 200
+  },
+  { Link: 'https://www.pavanonlinetrainings.com/', Status: 200 },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/p/playwrightpractice.html',
+    Status: 200
+  },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/2018/09/automation-form.html',
+    Status: 200
+  },
+  { Link: 'https://testautomationpractice.blogspot.com/', Status: 200 },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/feeds/posts/default',
+    Status: 200
+  },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/#',
+    Status: 200
+  },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/#',
+    Status: 200
+  },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/#',
+    Status: 200
+  },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/#',
+    Status: 200
+  },
+  { Link: 'https://wikipedia.org/wiki/', Status: 200 },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/#',
+    Status: 200
+  },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/#',
+    Status: 200
+  },
+  { Link: 'https://www.apple.com/', Status: 200 },
+  { Link: 'https://www.lenovo.com/', Status: 200 },
+  { Link: 'https://www.dell.com/', Status: 200 },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=400',
+    Status: 400
+  },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=401',
+    Status: 401
+  },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=403',
+    Status: 403
+  },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=404',
+    Status: 404
+  },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=408',
+    Status: 408
+  },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=500',
+    Status: 500
+  },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=502',
+    Status: 502
+  },
+  {
+    Link: 'http://www.deadlinkcity.com/error-page.asp?e=503',
+    Status: 503
+  },
+  { Link: 'http://testautomationpractice.blogspot.com/', Status: 200 },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/p/gui-elements-ajax-hidden.html',
+    Status: 200
+  },
+  {
+    Link: 'https://testautomationpractice.blogspot.com/p/download-files_25.html',
+    Status: 200
+  },
+  { Link: 'https://www.youtube.com/@sdetpavan/videos', Status: 200 },
+  {
+    Link: 'http://www.istockphoto.com/portfolio/merrymoonmary?platform=blogger',
+    Status: 200
+  },
+  { Link: 'https://www.blogger.com/', Status: 200 }
+]

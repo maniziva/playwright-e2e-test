@@ -1,0 +1,45 @@
+40
+┌─────────┬──────────────────────────────────────────────────────────────┬───────┐
+│ (index) │                             Name                             │ Price │
+├─────────┼──────────────────────────────────────────────────────────────┼───────┤
+│    0    │   'SONY PlayStation5 Console (slim) CFI-2008A01X 1024 GB'    │ 54990 │
+│    1    │     'SONY PS5 Console Disc (Slim) CFI-2008A01X 1024 GB'      │ 54990 │
+│    2    │ 'SONY Playstation5 Digital Edition(Slim) CFI-2008B01X 1 ...' │ 49990 │
+│    3    │ 'SONY PlayStation®5 Digital Edition (slim) CFI-2008B01 1...' │ 44990 │
+│    4    │    'SONY PS5 Console Digital (Slim) CFI-2008B01 1024 GB'     │ 49990 │
+│    5    │  'SONY PlayStation Portal™ Remote Player For PS5® Console'   │ 18990 │
+│    6    │             'SONY PlayStation 5 console 825 GB'              │ 54990 │
+│    7    │ 'SONY PlayStation VR 2 Headset Motion Controller | Brand...' │ 48006 │
+│    8    │ 'SONY PlayStation VR 2 Headset Motion Controller | Brand...' │ 45045 │
+│    9    │               'SONY Playstation Portal NA GB'                │ 23751 │
+│   10    │ 'Playstation Sony PS5 Pro 2 TB SSD Console–The Ultimate ...' │ 85131 │
+│   11    │ 'Playstation Sony PS5 Pro Console – The Ultimate Play St...' │ 85131 │
+│   12    │ 'Playstation VR2 Virtual Reality Headset for PS5 | Premi...' │ 45045 │
+│   13    │ 'Logitech G29 TRUEFORCE With Shifter PlayStation Edition...' │ 37125 │
+│   14    │ 'Playstation Sony PS5 Pro 2TB SSD Gaming Console Play St...' │ 84645 │
+│   15    │ 'Playstation Sony PS5 Pro 2 TB SSD Console+Disc Drive Co...' │ 98001 │
+│   16    │ 'HG WORLD Retro GS5 PRO Gaming Console with 2.4G Dual Vi...' │ 3518  │
+│   17    │ 'Playstation Sony PS5 Disk Drive Ultra HD Blu-ray| Essen...' │ 13851 │
+│   18    │ 'Timkolas GameStick 2.4G Wireless Controller 4K HD Conso...' │ 1436  │
+│   19    │ 'GAMESOUL GS5 Pro Game Console4k Dual Wireless Game Box ...' │ 4871  │
+│   20    │ 'HG WORLD Retro M22 Game Stick 2.4G Dual Wireless Consol...' │ 2200  │
+│   21    │ 'HG WORLD M8 Retro Game Stick Console 4k 2.4G Dual Wirel...' │ 1377  │
+│   22    │ 'HG WORLD PXN V3 Gaming Steering Wheel with Pedals, 180°...' │ 4560  │
+│   23    │ 'HG WORLD G99 Retro Game Stick Console with 2.4G Dual Wi...' │ 6348  │
+│   24    │ 'Timkolas 4K HD TV Video Game 2.4G Wireless Game Stick W...' │ 1474  │
+│   25    │ 'HG WORLD Retro M22 Game Stick Console 2.4G Dual Wireles...' │ 2207  │
+│   26    │ 'HG WORLD GS5 Mini Retro Game Stick Console with 2.4G Du...' │ 2504  │
+│   27    │ 'HG WORLD HY320 Pro 4K Supported Game Projector With 2* ...' │ 5445  │
+│   28    │ 'ZEPAD M15 4K HD TV Video Game 2.4G Wireless Game Stick ...' │ 1621  │
+│   29    │ 'ZEPAD M-8 Game Stick Console Pro 2.4G Dual Wireless Gam...' │ 1297  │
+│   30    │ 'GAMESOUL GS5 Pro Retro Game Console Gaming console for ...' │ 4361  │
+│   31    │ 'Omphalos Wireless video games for tv gaming, Retro gami...' │ 1574  │
+│   32    │ 'REEPUD 4,K HD TV Video Game 2.4G Wireless Game Stick Wi...' │ 1828  │
+│   33    │ 'Timkolas 4K HD 2.4g tv video game with 2 wireless contr...' │ 1443  │
+│   34    │ 'Lonekart Retro Game Stick Console 2.4G Dual Wireless Ga...' │ 1447  │
+│   35    │ 'HODOPHILE Wireless video games for tv gaming, Retro gam...' │ 1664  │
+│   36    │ 'Maizic Smarthome Funetic Red Camo Themed Bluetooth Wire...' │  970  │
+│   37    │ 'MECKWELL M33 Video Game With Wireless Controller & It c...' │ 2478  │
+│   38    │ 'NOWAIT Classic Tv Video Game 8 Bit Console PS5 Model Wi...' │ 1267  │
+│   39    │ 'HG WORLD M8 Retro Game Stick Console 4k 2.4G Dual Wirel...' │ 1377  │
+└─────────┴──────────────────────────────────────────────────────────────┴───────┘

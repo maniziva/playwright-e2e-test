@@ -1,0 +1,7 @@
+[
+  'red',   'blue',
+  'green', 'yellow',
+  'red',   'white',
+  'green'
+]
+[ 'Red', 'Yellow' ]

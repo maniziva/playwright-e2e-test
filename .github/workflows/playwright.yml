@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [github]
+    branches: [main]
 
 permissions:
   contents: write  # Needed for GitHub Pages deployment
@@ -48,39 +48,39 @@ jobs:
           name: allure-report
           path: allure-report/
 
-  deploy-reports:
-    needs: test
-    if: always()
-    runs-on: ubuntu-latest
+  # deploy-reports:
+  #   needs: test
+  #   if: always()
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Set timestamp
-        id: timestamp
-        run: |
-          ts=$(date +'%Y-%m-%d_%H-%M-%S')
-          echo "timestamp=$ts" >> $GITHUB_OUTPUT
-          echo "📝 Report URLs:"
-          echo "Playwright: https://maniziva.github.io/playwright-e2e-test/playwright-report/$ts/"
-          echo "Allure:     https://maniziva.github.io/playwright-e2e-test/allure-report/$ts/"
+  #     - name: Set timestamp
+  #       id: timestamp
+  #       run: |
+  #         ts=$(date +'%Y-%m-%d_%H-%M-%S')
+  #         echo "timestamp=$ts" >> $GITHUB_OUTPUT
+  #         echo "📝 Report URLs:"
+  #         echo "Playwright: https://maniziva.github.io/playwright-e2e-test/playwright-report/$ts/"
+  #         echo "Allure:     https://maniziva.github.io/playwright-e2e-test/allure-report/$ts/"
 
-      - name: Download Playwright Report
-        uses: actions/download-artifact@v4
-        with:
-          name: playwright-report
-          path: ./gh-pages-content/playwright-report/${{ steps.timestamp.outputs.timestamp }}
+  #     - name: Download Playwright Report
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: playwright-report
+  #         path: ./gh-pages-content/playwright-report/${{ steps.timestamp.outputs.timestamp }}
 
-      - name: Download Allure Report
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-report
-          path: ./gh-pages-content/allure-report/${{ steps.timestamp.outputs.timestamp }}
+  #     - name: Download Allure Report
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: allure-report
+  #         path: ./gh-pages-content/allure-report/${{ steps.timestamp.outputs.timestamp }}
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./gh-pages-content
-          force_orphan: false  # Preserves older versions
+  #     - name: Deploy to GitHub Pages
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./gh-pages-content
+  #         force_orphan: false  # Preserves older versions

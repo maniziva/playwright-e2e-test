@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [github]
+    branches: [main]
 
 permissions:
   contents: write  # Needed for GitHub Pages deployment

@@ -1,3 +1,4 @@
+import { fa } from '@faker-js/faker/.';
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
@@ -9,7 +10,7 @@ export default defineConfig({
   //globalSetup: require.resolve('./src/setup/web-global-setup'),
   timeout: 30000,
   //globalTimeout: 5000,
-  testDir: './test/interview-practice/Jan-Practice/',
+  testDir: './test/interview-practice/Feb-Practice/',
   testIgnore: './test/web-test/ignore/*',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -27,7 +28,7 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        headless: true,
+        headless: false,
         viewport: { width: 1440, height: 900 } // Desktop Chrome viewport
       },
     },

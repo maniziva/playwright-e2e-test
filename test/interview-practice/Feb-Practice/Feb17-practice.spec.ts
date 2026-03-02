@@ -6,7 +6,7 @@ import { title } from "process";
 test.describe("Feb17 Test suite", async () => {
   const baseURL = "https://practicetestautomation.com/practice-test-login/";
 
-  test.skip("Google search", async ({ page }) => {
+  test("Google search", async ({ page }) => {
     await page.goto("https://www.google.com/");
     await page.locator('//textarea[@title="Search"]').fill("Anthropic");
 
@@ -21,7 +21,7 @@ test.describe("Feb17 Test suite", async () => {
       console.log(char);
     }
   });
-test.only("Flipkart search", async ({ page }) => {
+test("Flipkart search", async ({ page }) => {
     await page.goto("https://www.flipkart.com/");
     const textbox = await page.locator('//input[@name="q"]').first();
     await textbox.click();

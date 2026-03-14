@@ -10,7 +10,7 @@ export default defineConfig({
   //globalSetup: require.resolve('./src/setup/web-global-setup'),
   timeout: 30000,
   //globalTimeout: 5000,
-  testDir: './test/interview-practice/Feb-Practice/',
+  testDir: './test/interview-practice/Mar-Practice/',
   testIgnore: './test/web-test/ignore/*',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,

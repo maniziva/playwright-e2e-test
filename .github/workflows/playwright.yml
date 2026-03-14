@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   schedule:
-    - cron: '0 16 * * *'   # Runs daily at 6:00 AM IST (00:30 UTC)
+    - cron: '0 16 * * *'   # Runs daily at 9:30 PM IST (16:00 UTC)
 
 permissions:
   contents: write  # Needed for GitHub Pages deployment

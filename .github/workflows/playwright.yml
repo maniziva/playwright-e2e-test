@@ -1,8 +1,9 @@
 name: Playwright Tests
 
 on:
-  schedule:
-    - cron: '0 16 * * *'   # Runs daily at 9:30 PM IST (16:00 UTC)
+  workflow_dispatch:  # Manual trigger only (schedule disabled)
+  # schedule:
+  #   - cron: '0 16 * * *'   # Runs daily at 9:30 PM IST (16:00 UTC)
 
 permissions:
   contents: write  # Needed for GitHub Pages deployment
